@@ -41,6 +41,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
     .eq('trip_id', id)
     .order('date', { ascending: false })
 
+
   // Fetch settlements
   const { data: settlements } = await supabase
     .from('settlements')
