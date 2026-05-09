@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { DestinationSearch } from '@/components/destination-search'
+import { RevealUp } from '@/components/reveal-up'
 
 
 export default function NewTripPage() {
@@ -29,7 +30,7 @@ export default function NewTripPage() {
 
   return (
     <div className="flex min-h-screen pt-24 px-4 bg-background pb-24">
-      <div className="w-full max-w-2xl mx-auto reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+      <RevealUp className="w-full max-w-2xl mx-auto">
         <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] hover:text-[#262626] transition-colors mb-8 inline-block">
           ← Back to Dashboard
         </Link>
@@ -117,7 +118,7 @@ export default function NewTripPage() {
             </form>
           </CardContent>
         </Card>
-      </div>
+      </RevealUp>
     </div>
   )
 }

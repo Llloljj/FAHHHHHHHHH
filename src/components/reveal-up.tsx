@@ -28,10 +28,10 @@ export function RevealUp({ children, className = '', delay = 0 }: RevealUpProps)
 
     observer.observe(currentRef)
 
-    // Fallback: If it's already in viewport or doesn't trigger for some reason
+    // Fallback: Ensure visibility even if observer fails
     const timer = setTimeout(() => {
       setIsVisible(true)
-    }, 2000)
+    }, 800)
 
     return () => {
       if (currentRef) observer.unobserve(currentRef)
@@ -42,8 +42,11 @@ export function RevealUp({ children, className = '', delay = 0 }: RevealUpProps)
   return (
     <div
       ref={ref}
-      className={`transition-super ${isVisible ? 'reveal-up-active' : 'reveal-up-start'} ${className}`}
-      style={isVisible ? {} : { opacity: 0, transform: 'translateY(20px)' }}
+      className={`${isVisible ? 'reveal-up-active' : 'reveal-up-start'} ${className}`}
+      style={{
+        transitionDelay: `${delay}ms`,
+        visibility: isVisible ? 'visible' : 'hidden'
+      }}
     >
       {children}
     </div>

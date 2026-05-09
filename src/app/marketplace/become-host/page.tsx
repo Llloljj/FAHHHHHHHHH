@@ -16,6 +16,7 @@ import {
   ArrowLeft
 } from 'lucide-react'
 import Link from 'next/link'
+import { RevealUp } from '@/components/reveal-up'
 
 export default function BecomeHostPage() {
   const [step, setStep] = useState(1)
@@ -42,7 +43,7 @@ export default function BecomeHostPage() {
   if (completed) {
     return (
       <div className="min-h-screen pt-[100px] px-8 flex items-center justify-center bg-[#fdf8f3]">
-        <div className="max-w-md w-full text-center space-y-8 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+        <RevealUp className="max-w-md w-full text-center space-y-8">
           <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-12 h-12 text-green-500" />
           </div>
@@ -50,10 +51,10 @@ export default function BecomeHostPage() {
           <p className="text-[#262626]/60 font-medium">
             Your host profile is being verified. You can now start creating listings in the marketplace.
           </p>
-          <Link href="/marketplace" className="inline-block bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
+          <Link href="/marketplace" className="inline-block bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all">
             Go to Marketplace
           </Link>
-        </div>
+        </RevealUp>
       </div>
     )
   }
@@ -65,14 +66,14 @@ export default function BecomeHostPage() {
           ← Back to Marketplace
         </Link>
 
-        <div className="mb-12 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+        <RevealUp className="mb-12">
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-[#262626] leading-[0.85]">
             BECOME A <br /> <span className="text-[#3B9ECC]">BANJARE HOST</span>
           </h1>
           <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-xl">
             Join our exclusive community of local experts and property owners. Verify your identity to start hosting.
           </p>
-        </div>
+        </RevealUp>
 
         {/* Progress Bar */}
         <div className="flex gap-2 mb-12">
@@ -86,7 +87,7 @@ export default function BecomeHostPage() {
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {step === 1 && (
-            <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            <RevealUp className="space-y-6">
               <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <User className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 1: Personal Details</span>
@@ -108,11 +109,11 @@ export default function BecomeHostPage() {
               <Button type="button" onClick={handleNext} className="w-full md:w-auto bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all flex items-center gap-2">
                 Continue <ChevronRight className="w-4 h-4" />
               </Button>
-            </div>
+            </RevealUp>
           )}
 
           {step === 2 && (
-            <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            <RevealUp className="space-y-6">
               <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <ShieldCheck className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 2: Identity Verification</span>
@@ -138,11 +139,11 @@ export default function BecomeHostPage() {
                   Continue <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
-            </div>
+            </RevealUp>
           )}
 
           {step === 3 && (
-            <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            <RevealUp className="space-y-6">
               <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <FileText className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 3: Host Agreement</span>
@@ -166,7 +167,7 @@ export default function BecomeHostPage() {
                   {loading ? 'Submitting...' : 'Complete Application'}
                 </Button>
               </div>
-            </div>
+            </RevealUp>
           )}
         </form>
       </div>

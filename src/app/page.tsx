@@ -145,7 +145,7 @@ export default function Home() {
                 <p className="text-sm text-[#262626]/60 group-hover:text-[#262626]/80 leading-relaxed font-medium">
                   {service.desc}
                 </p>
-                <div className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-super">
+                <div className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
                   <span className="label-utility text-[#262626]/70">Explore</span>
                   <span className="text-[#262626]">→</span>
                 </div>
@@ -205,7 +205,7 @@ export default function Home() {
                     />
                   </div>
                   {/* Hover circle */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-super z-10">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
                     <div className="w-[96px] h-[96px] rounded-full bg-[#262626] flex items-center justify-center shadow-2xl">
                       <span className="text-[#fdf8f3] label-utility tracking-[0.15em]">View</span>
                     </div>
@@ -293,7 +293,7 @@ export default function Home() {
                       {link.href ? (
                         <Link
                           href={link.href}
-                          className="text-[#262626] hover:text-[#3B9ECC] font-bold text-xs uppercase tracking-widest transition-super"
+                          className="text-[#262626] hover:text-[#3B9ECC] font-bold text-xs uppercase tracking-widest transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -313,8 +313,8 @@ export default function Home() {
         <div className="pt-8 border-t border-[#262626]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-black uppercase tracking-[0.2em] text-[#262626]/30">
           <p>© 2026 BANJARE. All Rights Reserved.</p>
           <div className="flex gap-8">
-            <Link href="#" className="hover:text-[#3B9ECC] transition-super">Privacy Policy</Link>
-            <Link href="#" className="hover:text-[#3B9ECC] transition-super">Terms of Service</Link>
+            <Link href="#" className="hover:text-[#3B9ECC] transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-[#3B9ECC] transition-colors">Terms of Service</Link>
           </div>
         </div>
       </footer>

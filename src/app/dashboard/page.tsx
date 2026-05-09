@@ -47,7 +47,7 @@ export default async function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trips.map((trip: any) => (
               <Link key={trip.id} href={`/trips/${trip.id}`}>
-                <Card className="h-full hover:-translate-y-2 transition-super cursor-pointer border-[#262626]/10 rounded-[24px] overflow-hidden group">
+                <Card className="h-full hover:-translate-y-2 transition-all duration-500 cursor-pointer border-[#262626]/10 rounded-[24px] overflow-hidden group">
                   <div className="h-48 bg-[#f5f0eb] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[#262626]/5 group-hover:bg-[#3B9ECC]/20 transition-colors z-10" />
                     <div className="absolute bottom-4 left-4 z-20">

@@ -1,5 +1,6 @@
 import { TransportSearch } from '@/components/transport-search'
 import { Plane, Train, Bus, Globe2 } from 'lucide-react'
+import { RevealUp } from '@/components/reveal-up'
 
 export default function TravelHubPage() {
   return (
@@ -7,7 +8,7 @@ export default function TravelHubPage() {
       <div className="max-w-6xl mx-auto">
 
         {/* Hero Section */}
-        <div className="mb-24 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+        <RevealUp className="mb-24">
           <div className="flex items-center gap-4 text-[#3B9ECC] mb-8">
             <Globe2 className="w-8 h-8 animate-pulse" />
             <span className="text-[12px] font-black uppercase tracking-[0.4em]">Global Transport Hub</span>
@@ -18,15 +19,15 @@ export default function TravelHubPage() {
           <p className="text-2xl text-white/60 font-medium max-w-2xl leading-relaxed">
             BANJARE connects you to every corner of the world. Search and book flights, trains, and buses with our curated global network.
           </p>
-        </div>
+        </RevealUp>
 
         {/* Unified Search Engine */}
-        <div className="mb-32 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_0.3s_forwards]">
+        <RevealUp delay={300} className="mb-32">
           <TransportSearch />
-        </div>
+        </RevealUp>
 
         {/* Quick Links / Partners */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_0.6s_forwards]">
+        <RevealUp delay={600} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="group p-8 rounded-[40px] bg-white/5 border border-white/10 hover:bg-[#3B9ECC]/10 hover:border-[#3B9ECC]/20 transition-super">
             <Plane className="w-10 h-10 text-[#3B9ECC] mb-6" />
             <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">Elite Airways</h3>
@@ -48,7 +49,7 @@ export default function TravelHubPage() {
               Luxury sleeper buses and private intercity charters at your fingertips.
             </p>
           </div>
-        </div>
+        </RevealUp>
 
       </div>
     </div>
