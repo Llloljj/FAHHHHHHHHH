@@ -93,14 +93,14 @@ export default function NewTripPage() {
               <div className="space-y-2">
                 <label htmlFor="budget_per_person" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Budget Per Person (Activity/Local Only)</label>
                 <div className="relative">
-                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#262626]/50 font-bold">$</span>
+                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#262626]/50 font-bold">₹</span>
                   <Input
                     id="budget_per_person"
                     name="budget_per_person"
                     type="number"
                     min="0"
-                    step="0.01"
-                    placeholder="1500"
+                    step="1"
+                    placeholder="50000"
                     required
                     className="rounded-full pl-12 pr-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
                   />

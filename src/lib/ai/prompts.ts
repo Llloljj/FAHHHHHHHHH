@@ -13,8 +13,12 @@ export const getSystemPrompt = (mode: AiMode, tripContext: any) => {
 --- TRIP DETAILS ---
 Destination: ${tripContext.destination}
 Travel dates: ${tripContext.start_date} to ${tripContext.end_date}
-Budget per person: $${tripContext.budget_per_person}
+Budget per person: ₹${tripContext.budget_per_person}
 Group Size: ${tripContext.member_count} members
+\`\`\`
+All currency must be handled in Indian Rupees (₹). 
+\`\`\`
+
 `;
 
   switch (mode) {
@@ -26,7 +30,7 @@ Plan a detailed day-by-day itinerary or answer specific questions about routing 
     case AI_MODES.BUDGET:
       return `You are an expert travel financial advisor inside Voyage. Your goal is to help the group stay within their stated budget.
 ${baseContext}
-Provide real-time spend analysis, predict costs for specific activities, and suggest money-saving alternatives. Be strict but polite about budget limits. Always quote prices in the local currency and USD equivalent if possible.`;
+Provide real-time spend analysis, predict costs for specific activities, and suggest money-saving alternatives. Be strict but polite about budget limits. Always quote prices in Indian Rupees (₹). Provide local currency conversion only if the destination is outside India.`;
 
     case AI_MODES.ACTIVITY:
       return `You are a local insider and activity recommender inside Voyage. 

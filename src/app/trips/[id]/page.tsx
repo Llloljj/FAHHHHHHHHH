@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { Calendar, MapPin, DollarSign, Users, Link as LinkIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Calendar, MapPin, DollarSign, Users } from 'lucide-react'
 import { AiConcierge } from '@/components/ai-concierge'
+import { ExpenseLedger } from '@/components/expense-ledger'
 
 export default async function TripDashboard({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -11,7 +11,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
   
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Fetch trip details and verify membership (RLS handles this automatically, but we select members too)
+  // Fetch trip details and members
   const { data: trip, error } = await supabase
     .from('trips')
     .select(`
@@ -31,6 +31,13 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
       </div>
     )
   }
+
+  // Fetch expenses for this trip
+  const { data: expenses } = await supabase
+    .from('expenses')
+    .select('*')
+    .eq('trip_id', id)
+    .order('date', { ascending: false })
 
   const inviteUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/trips/${id}/invite`
 
@@ -81,7 +88,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                 <CardContent className="p-6">
                   <DollarSign className="w-6 h-6 text-[#e4a4bd] mb-4" />
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Per Person</div>
-                  <div className="text-xl font-bold text-[#262626]">${trip.budget_per_person}</div>
+                  <div className="text-xl font-bold text-[#262626]">₹{trip.budget_per_person}</div>
                 </CardContent>
               </Card>
               <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
@@ -102,6 +109,14 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               member_count: trip.trip_members?.length || 1
             }} />
 
+            {/* Expense Ledger (Phase 4) */}
+            <ExpenseLedger 
+              tripId={id}
+              expenses={expenses || []}
+              members={trip.trip_members}
+              currentUserId={user?.id}
+            />
+
           </div>
 
           {/* Sidebar (Right) */}
@@ -117,9 +132,11 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                     <div key={member.id} className="flex items-center justify-between p-3 bg-background rounded-xl border border-[#262626]/5">
                       <div className="flex items-center">
                         <div className="w-8 h-8 rounded-full bg-[#f5f0eb] flex items-center justify-center text-[10px] font-black text-[#e4a4bd]">
-                          {member.role === 'admin' ? 'A' : 'M'}
+                          {member.user_id === user?.id ? 'YOU' : member.role === 'admin' ? 'A' : 'M'}
                         </div>
-                        <span className="ml-3 text-sm font-bold text-[#262626]">User {member.user_id.substring(0,6)}</span>
+                        <span className="ml-3 text-sm font-bold text-[#262626]">
+                          {member.user_id === user?.id ? 'You (Guest)' : `User ${member.user_id.substring(0,6)}`}
+                        </span>
                       </div>
                       <span className="text-[9px] uppercase tracking-widest text-[#262626]/40 font-black">{member.role}</span>
                     </div>

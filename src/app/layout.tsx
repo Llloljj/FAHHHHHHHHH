@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${leagueSpartan.className} min-h-screen flex flex-col antialiased bg-background text-foreground`}>
+      <body className={`${leagueSpartan.className} min-h-screen flex flex-col antialiased bg-background text-foreground`} suppressHydrationWarning>
         <GuestSession />
         <Navbar />
         <main className="flex-1">{children}</main>
