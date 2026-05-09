@@ -52,6 +52,27 @@ app.post("/create-order", async (req, res) => {
     }
 });
 
+// Test DB Route
+app.get('/test-db', async (req, res) => {
+    try {
+        const state = mongoose.connection.readyState;
+        const states = {
+            0: 'disconnected',
+            1: 'connected',
+            2: 'connecting',
+            3: 'disconnecting',
+            99: 'uninitialized',
+        };
+        res.json({
+            database: 'MongoDB',
+            connectionState: states[state] || 'unknown',
+            isWorking: state === 1
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
