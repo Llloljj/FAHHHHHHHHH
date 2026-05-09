@@ -49,27 +49,27 @@ export default function Home() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center hero-slide-left">
 
             {/* Kicker label */}
-            <div className="flex items-center gap-4 mb-10">
-              <span style={{ fontSize: '18px' }} className="font-black uppercase tracking-[0.2em] accent-gradient-text">Peer-to-Peer Luxury Travel</span>
-              <span className="block w-12 h-px accent-gradient" />
+            <div className="flex items-center gap-4 mb-6 md:mb-10">
+              <span style={{ fontSize: '16px' }} className="font-black uppercase tracking-[0.2em] accent-gradient-text">Peer-to-Peer Luxury Travel</span>
+              <span className="block w-8 md:w-12 h-px accent-gradient" />
             </div>
 
             <h1 className="font-black leading-[0.82] tracking-widest text-[#262626] uppercase"
-              style={{ fontSize: 'clamp(48px, 10vw, 120px)' }}>
+              style={{ fontSize: 'clamp(40px, 10vw, 120px)' }}>
               BEYOND <br />
               <span className="lowercase italic accent-gradient-text font-light tracking-widest">the</span>{' '}
               <br />
               ORDINARY
             </h1>
 
-            <p className="mt-12 text-xl md:text-2xl font-medium text-white max-w-xl leading-relaxed">
+            <p className="mt-6 md:mt-12 text-base md:text-2xl font-medium text-white max-w-xl leading-relaxed">
               Group itineraries curated by AI, powered by verified local experts. Travel elevated.
             </p>
 
-            <div className="mt-14 flex flex-wrap items-center gap-8">
+            <div className="mt-8 md:mt-14 flex flex-wrap items-center gap-4 md:gap-8">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:accent-gradient hover:text-[#262626] transition-colors text-sm"
+                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-8 py-4 md:px-10 md:py-5 hover:accent-gradient hover:text-[#262626] transition-colors text-sm"
               >
                 Start Planning
                 <span className="text-base leading-none">→</span>
@@ -83,8 +83,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Side */}
-          <div className="col-span-1 md:col-span-5 relative flex items-center justify-center hero-slide-right">
+          {/* Right Side — hidden on mobile */}
+          <div className="hidden md:flex col-span-1 md:col-span-5 relative items-center justify-center hero-slide-right">
 
             {/* Hero Video Card */}
             <div className="relative w-4/5 md:w-3/4 aspect-[3/4] rounded-[24px] overflow-hidden group cursor-pointer border-[6px] border-white transition-transform duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl">
@@ -115,15 +115,16 @@ export default function Home() {
             </div>
 
             {/* Floating Concierge Badge */}
-            <div className="absolute -left-8 md:-left-16 bottom-20 w-[180px] h-[180px] rounded-full accent-gradient flex flex-col items-center justify-center text-white animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
-              <span className="text-6xl italic font-medium leading-none">01</span>
-              <span className="text-xs uppercase tracking-[0.25em] font-black mt-3 text-center leading-tight px-4">
+            <div className="absolute -left-8 md:-left-16 bottom-20 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full accent-gradient flex flex-col items-center justify-center text-white animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
+              <span className="text-4xl md:text-6xl italic font-medium leading-none">01</span>
+              <span className="text-[9px] md:text-xs uppercase tracking-[0.25em] font-black mt-2 text-center leading-tight px-3">
                 AI Travel<br />Concierge
               </span>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* ── SERVICES GRID ─────────────────────────── */}
       <section className="py-32 px-8 md:px-16 bg-[#f5f0eb]">
@@ -133,7 +134,7 @@ export default function Home() {
               style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
               The <span className="accent-gradient-text italic font-light">BANJARE</span><br /> Suite
             </h2>
-            <p className="label-utility text-[#262626]/40 max-w-[200px] text-right leading-loose">
+            <p className="text-sm md:text-base font-black uppercase tracking-[0.2em] text-[#262626]/50 max-w-[260px] text-right leading-loose">
               Three pillars of premium group travel
             </p>
           </div>
@@ -202,13 +203,21 @@ export default function Home() {
       {/* ── PORTFOLIO STAGGERED GRID ───────────────── */}
       <section className="py-32 px-8 md:px-16 bg-[#fdf8f3]">
         <RevealUp>
-          <div className="mb-24">
-            <p className="label-utility accent-gradient-text mb-6">Our Portfolio</p>
-            <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85]"
-              style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
-              Curated <br />
-              <span className="accent-gradient-text italic font-light">Destinations</span>
-            </h2>
+          <div className="mb-24 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+            <div className="overflow-visible pr-2">
+              <p className="text-sm md:text-base font-black uppercase tracking-[0.2em] accent-gradient-text mb-6">Our Portfolio</p>
+              <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85] overflow-visible"
+                style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
+                Curated <br />
+                <span className="accent-gradient-text italic font-light">Destinations</span>
+              </h2>
+            </div>
+            <div className="flex flex-col gap-4 md:max-w-xs md:text-right pb-2">
+              <div className="w-12 h-px accent-gradient md:ml-auto" />
+              <p className="text-base md:text-lg font-medium text-[#262626]/60 leading-relaxed">
+                Handpicked locations for the discerning group traveller. Every destination tells a story.
+              </p>
+            </div>
           </div>
         </RevealUp>
 
