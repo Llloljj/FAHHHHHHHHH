@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { LogOut, User } from 'lucide-react'
+import { LogOut, LayoutDashboard, PlusCircle } from 'lucide-react'
 
 export async function Navbar() {
   const supabase = await createClient()
@@ -13,38 +13,48 @@ export async function Navbar() {
         <Link href="/" className="font-black text-2xl tracking-tighter uppercase text-[#262626]">
           VOYAGE
         </Link>
-        
+
         {/* Center: Menu */}
         <div className="hidden md:flex items-center space-x-12">
-          <Link href="/destinations" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-            Destinations
-          </Link>
-          <Link href="/experiences" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-            Experiences
-          </Link>
-          <Link href="/concierge" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-            Concierge
-          </Link>
+          {user ? (
+            <>
+              <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+                My Trips
+              </Link>
+              <Link href="/trips/new" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+                Plan a Trip
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+                How It Works
+              </Link>
+              <Link href="/login" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+                AI Concierge
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Right: CTA / Auth */}
         <div className="flex items-center space-x-4">
           {user ? (
             <div className="flex items-center gap-4">
-              <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-                Dashboard
+              <Link href="/trips/new" className="hidden md:flex bg-[#262626] text-white rounded-full px-[24px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#e4a4bd] hover:text-[#262626] transition-super items-center gap-2">
+                <PlusCircle className="h-3 w-3" />
+                New Trip
               </Link>
               <form action="/api/auth/signout" method="POST">
-                <button type="submit" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity flex items-center">
-                  <LogOut className="h-3 w-3 mr-2" />
+                <button type="submit" className="bg-[#f5f0eb] text-[#262626] rounded-full px-[24px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#e4a4bd] transition-super flex items-center gap-2">
+                  <LogOut className="h-3 w-3" />
                   Sign Out
                 </button>
               </form>
             </div>
           ) : (
-            <Link href="/login" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity flex items-center">
-              <User className="h-3 w-3 mr-2" />
-              Sign In
+            <Link href="/login" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
+              Get Started
             </Link>
           )}
         </div>

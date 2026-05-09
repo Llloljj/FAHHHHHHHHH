@@ -16,9 +16,12 @@ export default function Home() {
             <p className="mt-12 text-2xl font-medium text-[#262626]/70 max-w-xl leading-relaxed">
               Experience peer-to-peer luxury travel. Group itineraries curated by AI, powered by verified locals.
             </p>
-            <div className="mt-12">
+            <div className="mt-12 flex flex-wrap gap-6">
+              <Link href="/login" className="inline-flex items-center text-xl font-bold uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#e4a4bd] hover:text-[#262626] transition-super">
+                Start Planning <span className="ml-4">→</span>
+              </Link>
               <Link href="/login" className="inline-flex items-center text-xl font-bold uppercase tracking-widest text-[#262626] border-b-2 border-[#e4a4bd] pb-2 hover:text-[#e4a4bd] transition-colors">
-                Start Your Journey <span className="ml-4">→</span>
+                See How It Works
               </Link>
             </div>
           </div>
