@@ -68,14 +68,14 @@ export default function Home() {
             <div className="mt-14 flex flex-wrap items-center gap-8">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#e4a4bd] hover:text-[#262626] transition-super text-sm"
+                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#e4a4bd] hover:text-[#262626] transition-colors text-sm"
               >
                 Start Planning
                 <span className="text-base leading-none">→</span>
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 border-[#e4a4bd] pb-1 hover:text-[#e4a4bd] transition-super text-sm"
+                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 border-[#e4a4bd] pb-1 hover:text-[#e4a4bd] transition-colors text-sm"
               >
                 See How It Works
               </Link>
@@ -169,7 +169,7 @@ export default function Home() {
               <p className="text-[#fdf8f3]/50 font-medium leading-relaxed">
                 Banjara connects you with verified local experts and AI-curated experiences that redefine what group travel means.
               </p>
-              <Link href="/login" className="label-utility text-[#e4a4bd] hover:text-white transition-super inline-flex items-center gap-3">
+              <Link href="/login" className="label-utility text-[#e4a4bd] hover:text-white transition-colors inline-flex items-center gap-3">
                 Join the community <span>→</span>
               </Link>
             </div>

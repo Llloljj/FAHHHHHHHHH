@@ -24,7 +24,7 @@ export function Navbar() {
         {/* Left: Brand */}
         <Link
           href="/"
-          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#e4a4bd] transition-super"
+          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#e4a4bd] transition-colors"
         >
           BANJARA
         </Link>
