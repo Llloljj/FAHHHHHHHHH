@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { RevealUp } from '@/components/reveal-up'
 import { Search, MapPin, Star, Filter } from 'lucide-react'
+import { BookingModal } from '@/components/booking-modal'
 
 const MOCK_LISTINGS = [
   {
@@ -433,79 +434,82 @@ export default async function MarketplacePage({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {allListings.map((listing: any, index: number) => (
                   <RevealUp key={listing.id} delay={100 + index * 50}>
-                    <Card className="h-full hover:-translate-y-2 transition-all duration-500 border-[#262626]/10 rounded-[24px] overflow-hidden group flex flex-col justify-between bg-white">
-                      <div>
-                        <div className="h-48 bg-[#f5f0eb] relative overflow-hidden">
-                          {listing.details?.image_url ? (
-                            <img src={listing.details.image_url} alt={listing.full_name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center text-[#262626]/30 font-bold uppercase text-sm">No Image</div>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#262626]/30 to-transparent z-10" />
-                          <div className="absolute bottom-4 left-4 z-20">
-                            <span className="bg-[#3B9ECC] text-[#262626] text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-sm">
-                              {listing.service_type}
-                            </span>
-                          </div>
-                        </div>
-                        <CardContent className="p-6">
-                          <div className="flex justify-between items-start mb-2">
-                            <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626]">
-                              {listing.full_name}
-                            </h3>
-                            <div className="flex items-center text-amber-500 gap-1 text-sm font-bold">
-                              <Star className="w-4 h-4 fill-amber-500" /> 5.0
+                    <BookingModal 
+                      listing={{
+                        id: listing.id,
+                        title: listing.full_name,
+                        price_per_day: listing.details?.price || listing.details?.charges_per_hour || listing.details?.guide_rate || 0,
+                        security_deposit_amount: 0
+                      }}
+                    >
+                      <Card className="group border-0 bg-transparent overflow-hidden cursor-pointer h-full flex flex-col justify-between">
+                        <CardContent className="p-0 flex flex-col h-full justify-between">
+                          <div>
+                            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden mb-6">
+                              <img
+                                src={listing.details?.image_url || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'}
+                                alt={listing.full_name}
+                                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                              />
+                              <div className="absolute top-6 right-6">
+                                <span className="bg-white/90 backdrop-blur-md text-[#262626] text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full flex items-center gap-2">
+                                  <Star className="w-3 h-3 fill-amber-500 text-amber-500" /> 5.0
+                                </span>
+                              </div>
+                              <div className="absolute bottom-6 left-6 z-20">
+                                <span className="bg-[#3B9ECC] text-[#262626] text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-sm">
+                                  {listing.service_type}
+                                </span>
+                              </div>
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#262626]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </div>
+
+                            <div className="space-y-3 px-2">
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC] mb-1">
+                                    <MapPin className="w-3 h-3 mr-1" />
+                                    {listing.details?.city || 'Unknown Location'}
+                                  </div>
+                                  <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:text-[#3B9ECC] transition-colors text-left">
+                                    {listing.full_name}
+                                  </h3>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-xl font-black text-[#262626]">
+                                    ₹{listing.details?.price || listing.details?.charges_per_hour || listing.details?.guide_rate || 'N/A'}
+                                  </div>
+                                  <div className="text-[9px] font-black uppercase text-[#262626]/40">
+                                    per {listing.service_type === 'vehicle' ? 'hr' : listing.service_type === 'food' ? 'meal' : 'day'}
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div className="border-t border-[#262626]/5 pt-3 mt-3 space-y-1 text-xs text-[#262626]/60 text-left">
+                                {listing.service_type === 'food' && (
+                                  <div>Menu: <span className="font-bold text-[#262626]">{listing.details?.menu_details}</span></div>
+                                )}
+                                {listing.service_type === 'home' && (
+                                  <div>Size: <span className="font-bold text-[#262626] uppercase">{listing.details?.size}</span></div>
+                                )}
+                                {listing.service_type === 'guide' && (
+                                  <div>Exp: <span className="font-bold text-[#262626] capitalize">{listing.details?.experience}</span></div>
+                                )}
+                              </div>
                             </div>
                           </div>
                           
-                          <div className="text-sm text-[#262626]/70 font-medium mb-4 flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-[#3B9ECC]" />
-                            {listing.details?.city || 'Unknown Location'}
-                          </div>
-
-                          <div className="border-t border-[#262626]/5 pt-4 space-y-2 text-sm text-[#262626]/80">
-                            {listing.service_type === 'home' && (
-                              <>
-                                <div>Size: <span className="font-bold uppercase">{listing.details?.size}</span></div>
-                                <div>Washrooms: <span className="font-bold">{listing.details?.washrooms}</span></div>
-                              </>
-                            )}
-                            {listing.service_type === 'vehicle' && (
-                              <>
-                                <div>Model: <span className="font-bold">{listing.details?.vehicle_model}</span></div>
-                                <div>Type: <span className="font-bold capitalize">{listing.details?.vehicle_type?.replace('_', ' ')}</span></div>
-                                <div>Fuel: <span className="font-bold capitalize">{listing.details?.fuel}</span></div>
-                              </>
-                            )}
-                            {listing.service_type === 'food' && (
-                              <>
-                                <div>Type: <span className="font-bold capitalize">{listing.details?.food_type?.replace('_', ' ')}</span></div>
-                                <div>Spice Level: <span className="font-bold capitalize">{listing.details?.spice_level}</span></div>
-                                <div>Menu: <span className="font-bold">{listing.details?.menu_details}</span></div>
-                              </>
-                            )}
-                            {listing.service_type === 'guide' && (
-                              <>
-                                <div>Experience: <span className="font-bold capitalize">{listing.details?.experience}</span></div>
-                                <div>Can Plan: <span className="font-bold">{listing.details?.can_make_plan === 'yes' ? 'Yes' : 'No'}</span></div>
-                                <div className="text-xs text-[#262626]/60 mt-1">{listing.details?.area_description}</div>
-                              </>
-                            )}
+                          <div className="px-2 pt-4">
+                            <button className="w-full bg-[#262626] text-white rounded-full py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
+                              Book Now
+                            </button>
                           </div>
                         </CardContent>
-                      </div>
-                      <div className="p-6 pt-0 flex justify-between items-center mt-auto border-t border-[#262626]/5 pt-4">
-                        <div className="text-xl font-black text-[#262626]">
-                          ₹{listing.details?.price || listing.details?.charges_per_hour || listing.details?.guide_rate || 'N/A'}
-                          <span className="text-xs text-[#262626]/50 font-medium"> / {listing.service_type === 'vehicle' ? 'hr' : listing.service_type === 'food' ? 'meal' : 'day'}</span>
-                        </div>
-                        <button className="bg-[#262626] text-white rounded-full px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
-                          Book Now
-                        </button>
-                      </div>
-                    </Card>
+                      </Card>
+                    </BookingModal>
                   </RevealUp>
                 ))}
+
               </div>
             )}
           </div>

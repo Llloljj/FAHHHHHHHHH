@@ -13,27 +13,27 @@ export async function createBookingOrder(listingId: string, amount: number) {
   const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID || '',
     key_secret: process.env.RAZORPAY_KEY_SECRET || '',
-  })
+  });
 
-  const amountInPaise = Math.round(amount * 100)
+  const options = {
+    amount: Math.round(amount * 100), // in paise
+    currency: "INR",
+    receipt: `receipt_${listingId}_${Date.now()}`,
+  };
 
   try {
-    const order = await razorpay.orders.create({
-      amount: amountInPaise,
-      currency: 'INR',
-      receipt: `receipt_${listingId}_${Date.now()}`
-    })
-
+    const order = await razorpay.orders.create(options);
     return {
       orderId: order.id,
       amount: order.amount,
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID
+      key: process.env.RAZORPAY_KEY_ID || ''
     }
   } catch (error) {
-    console.error("Razorpay order creation failed:", error)
-    throw new Error('Failed to create payment order')
+    console.error('Razorpay Order Creation Error:', error);
+    throw new Error('Failed to create payment order');
   }
 }
+
 export async function confirmBooking(data: {
   listingId: string,
   tripId?: string,
