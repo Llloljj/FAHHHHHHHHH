@@ -110,11 +110,12 @@ export default function NewTripPage() {
                     id="spending_power"
                     name="spending_power"
                     required
+                    defaultValue="standard"
                     className="flex h-10 w-full rounded-full border border-[#262626]/20 bg-background px-6 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B9ECC] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     style={{ height: '50px' }}
                   >
                     <option value="budget">Budget Friendly</option>
-                    <option value="standard" selected>Standard</option>
+                    <option value="standard">Standard</option>
                     <option value="luxury">Luxury / Premium</option>
                   </select>
                 </div>

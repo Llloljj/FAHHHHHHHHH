@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createClient as createSupabaseAdmin } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
+import { revalidatePath } from 'next/cache'
 
 export async function createTrip(formData: FormData) {
   const supabase = await createClient()
@@ -68,13 +69,63 @@ export async function createTrip(formData: FormData) {
   }
 
   if (user) {
-    await adminAuthClient.from('trip_members').insert({
+    const { error: memberError } = await adminAuthClient.from('trip_members').insert({
       trip_id: tripId,
       user_id: user.id,
       role: 'admin'
     })
+    
+    if (memberError) {
+      console.error('Error adding user to trip_members:', memberError)
+      throw new Error(`Failed to link user to trip: ${memberError.message}`)
+    }
   }
 
   redirect(`/trips/${tripId}`)
 }
 
+export async function deleteTrip(tripId: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    throw new Error('Not authenticated')
+  }
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  
+  if (!supabaseServiceKey) {
+    throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY in .env.local")
+  }
+
+  const adminAuthClient = createSupabaseAdmin(supabaseUrl, supabaseServiceKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  })
+
+  // Verify ownership or admin role in trip_members
+  const { data: member } = await adminAuthClient
+    .from('trip_members')
+    .select('role')
+    .eq('trip_id', tripId)
+    .eq('user_id', user.id)
+    .single()
+
+  if (!member || member.role !== 'admin') {
+    throw new Error('Not authorized to delete this trip')
+  }
+
+  const { error } = await adminAuthClient
+    .from('trips')
+    .delete()
+    .eq('id', tripId)
+
+  if (error) {
+    throw new Error(`Failed to delete trip: ${error.message}`)
+  }
+
+  revalidatePath('/dashboard')
+}
