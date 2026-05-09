@@ -1,5 +1,5 @@
 import { google } from '@ai-sdk/google';
-import { generateText } from 'ai';
+import { streamText } from 'ai';
 import { getSystemPrompt, AiMode } from '@/lib/ai/prompts';
 
 export const maxDuration = 30;
@@ -19,27 +19,13 @@ export async function POST(req: Request) {
 
     const systemPrompt = getSystemPrompt(aiMode, tripContext);
 
-    // Convert messages to CoreMessage schema
-    const coreMessages = messages.map((m: any) => {
-      let content = '';
-      if (typeof m.content === 'string' && m.content) {
-        content = m.content;
-      } else if (m.parts && Array.isArray(m.parts)) {
-        content = m.parts.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('');
-      }
-      return {
-        role: m.role,
-        content: content || ' '
-      };
-    });
-
-    const { text } = await generateText({
+    const result = streamText({
       model: google('gemini-1.5-flash'),
       system: systemPrompt,
-      messages: coreMessages,
+      messages,
     });
 
-    return Response.json({ text });
+    return result.toTextStreamResponse();
   } catch (error: any) {
     console.error('Chat API Error:', error);
     return new Response(error.message || 'Internal Server Error', { status: 500 });

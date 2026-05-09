@@ -133,10 +133,10 @@ export default function Home() {
           {SERVICES.map((service, i) => (
             <RevealUp key={i}>
               <div
-                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-all duration-500 cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
+                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-super cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
                 style={{ minHeight: '320px' }}
               >
-                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-all duration-500 mb-10 leading-none">
+                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-super mb-10 leading-none">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-5">
@@ -145,27 +145,10 @@ export default function Home() {
                 <p className="text-sm text-[#262626]/60 group-hover:text-[#262626]/80 leading-relaxed font-medium">
                   {service.desc}
                 </p>
-                {service.title === "P2P MARKETPLACE" ? (
-                  <Link href="/marketplace" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                    <span className="label-utility text-[#262626]/70">Explore Marketplace</span>
-                    <span className="text-[#262626]">→</span>
-                  </Link>
-                ) : service.title === "SMART SPLITS" ? (
-                  <Link href="/smart-splits" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                    <span className="label-utility text-[#262626]/70">Go to Ledger</span>
-                    <span className="text-[#262626]">→</span>
-                  </Link>
-                ) : service.title === "AI ITINERARIES" ? (
-                  <Link href="/travel-hub" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                    <span className="label-utility text-[#262626]/70">Book Travel</span>
-                    <span className="text-[#262626]">→</span>
-                  </Link>
-                ) : (
-                  <Link href="/dashboard" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                    <span className="label-utility text-[#262626]/70">Explore</span>
-                    <span className="text-[#262626]">→</span>
-                  </Link>
-                )}
+                <div className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
+                  <span className="label-utility text-[#262626]/70">Explore</span>
+                  <span className="text-[#262626]">→</span>
+                </div>
               </div>
             </RevealUp>
           ))}
@@ -240,6 +223,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── STATS BAR ──────────────────────────────── */}
+      <section className="py-20 px-8 md:px-16 bg-[#f5f0eb] border-y border-[#262626]/10">
+        <RevealUp>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "12K+", label: "Trips Planned" },
+              { value: "94%", label: "Satisfaction Rate" },
+              { value: "200+", label: "Destinations" },
+              { value: "40K+", label: "Travelers" },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col gap-2">
+                <span className="font-black text-[#262626] tracking-tighter"
+                  style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1 }}>
+                  {stat.value}
+                </span>
+                <span className="label-utility text-[#262626]/40">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </RevealUp>
+      </section>
 
       {/* ── FOOTER ────────────────────────────────── */}
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">

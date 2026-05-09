@@ -41,61 +41,25 @@ export function BookingModal({ listing, children }: BookingModalProps) {
     if (!date?.from || !date?.to) return
     setLoading(true)
 
+    // Simulating a brief "payment" delay
+    await new Promise(resolve => setTimeout(resolve, 1500))
+
     try {
-      // 1. Create Order via Server Action
       const order = await createBookingOrder(listing.id, total)
 
-      // 2. Initialize Razorpay Checkout
-      const options = {
-        key: order.key,
-        amount: order.amount,
-        currency: "INR",
-        name: "BANJARE",
-        description: `Booking for ${listing.title}`,
-        order_id: order.orderId,
-        handler: async function (response: any) {
-          try {
-            // 3. Confirm Booking in Database
-            await confirmBooking({
-              listingId: listing.id,
-              startDate: format(date!.from, 'yyyy-MM-dd'),
-              endDate: format(date!.to, 'yyyy-MM-dd'),
-              totalPrice: total,
-              razorpayOrderId: response.razorpay_order_id,
-              razorpayPaymentId: response.razorpay_payment_id
-            })
-            setIsSuccess(true)
-          } catch (err) {
-            console.error("Booking confirmation failed:", err)
-            alert("Payment successful but booking confirmation failed. Please contact support.")
-          } finally {
-            setLoading(false)
-          }
-        },
-        prefill: {
-          name: "Guest", // Could be dynamically loaded from user profile
-          email: "guest@example.com",
-        },
-        theme: {
-          color: "#3B9ECC"
-        },
-        modal: {
-          ondismiss: function() {
-            setLoading(false)
-          }
-        }
-      };
+      await confirmBooking({
+        listingId: listing.id,
+        startDate: format(date.from, 'yyyy-MM-dd'),
+        endDate: format(date.to, 'yyyy-MM-dd'),
+        totalPrice: total,
+        razorpayOrderId: order.orderId,
+        razorpayPaymentId: `mock_pay_${Math.random().toString(36).substring(7)}`
+      })
 
-      const rzp = new (window as any).Razorpay(options);
-      rzp.on('payment.failed', function (response: any) {
-        alert(`Payment failed: ${response.error.description}`);
-        setLoading(false)
-      });
-      rzp.open();
-
+      setIsSuccess(true)
     } catch (err) {
       console.error(err)
-      alert("Failed to initialize payment. Please try again.")
+    } finally {
       setLoading(false)
     }
   }
