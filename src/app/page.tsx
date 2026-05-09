@@ -223,27 +223,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS BAR ──────────────────────────────── */}
-      <section className="py-20 px-8 md:px-16 bg-[#f5f0eb] border-y border-[#262626]/10">
-        <RevealUp>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "12K+", label: "Trips Planned" },
-              { value: "94%", label: "Satisfaction Rate" },
-              { value: "200+", label: "Destinations" },
-              { value: "40K+", label: "Travelers" },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <span className="font-black text-[#262626] tracking-tighter"
-                  style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1 }}>
-                  {stat.value}
-                </span>
-                <span className="label-utility text-[#262626]/40">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </RevealUp>
-      </section>
 
       {/* ── FOOTER ────────────────────────────────── */}
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">
