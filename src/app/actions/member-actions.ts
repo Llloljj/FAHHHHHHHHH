@@ -5,11 +5,16 @@ import { redirect } from 'next/navigation'
 
 export async function joinTrip(tripId: string) {
   const supabase = await createClient()
-  
-  const { data: { user } } = await supabase.auth.getUser()
+
+  let { data: { user } } = await supabase.auth.getUser()
+
+  // Auto-create anonymous session if needed
   if (!user) {
-    redirect(`/login?next=/trips/${tripId}/invite`)
+    const { data } = await supabase.auth.signInAnonymously()
+    user = data.user
   }
+
+  if (!user) throw new Error('Could not establish session')
 
   // Check if already a member
   const { data: existingMember } = await supabase
@@ -20,18 +25,13 @@ export async function joinTrip(tripId: string) {
     .single()
 
   if (!existingMember) {
-    // Insert new member
     const { error } = await supabase
       .from('trip_members')
-      .insert({
-        trip_id: tripId,
-        user_id: user.id,
-        role: 'member'
-      })
+      .insert({ trip_id: tripId, user_id: user.id, role: 'member' })
 
     if (error) {
       console.error('Error joining trip:', error)
-      throw new Error('Failed to join trip. Please try again.')
+      throw new Error('Failed to join trip.')
     }
   }
 

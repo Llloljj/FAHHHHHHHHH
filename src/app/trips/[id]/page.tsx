@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Calendar, MapPin, DollarSign, Users, Link as LinkIcon } from 'lucide-react'
@@ -11,9 +10,6 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
   const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    redirect('/login')
-  }
 
   // Fetch trip details and verify membership (RLS handles this automatically, but we select members too)
   const { data: trip, error } = await supabase
