@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Calendar, MapPin, DollarSign, Users, Link as LinkIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { AiConcierge } from '@/components/ai-concierge'
 
 export default async function TripDashboard({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -96,19 +97,14 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               </Card>
             </div>
 
-            {/* AI Assistant Placeholder */}
-            <div className="border border-[#262626]/10 rounded-[24px] overflow-hidden reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_0.3s_forwards]">
-              <div className="bg-[#e4a4bd] p-8 text-[#262626]">
-                <h3 className="text-2xl font-black uppercase tracking-tighter flex items-center">
-                  <span className="text-4xl italic font-light mr-4">01</span>
-                  AI Concierge
-                </h3>
-                <p className="mt-2 font-medium opacity-80">Your intelligent group planner will go here.</p>
-              </div>
-              <div className="bg-[#f5f0eb] p-12 flex items-center justify-center min-h-[300px]">
-                <p className="text-[#262626]/50 uppercase tracking-widest text-[10px] font-black">( Coming in Phase 3 )</p>
-              </div>
-            </div>
+            {/* AI Assistant */}
+            <AiConcierge tripContext={{
+              destination: trip.destination,
+              start_date: trip.start_date,
+              end_date: trip.end_date,
+              budget_per_person: trip.budget_per_person,
+              member_count: trip.trip_members?.length || 1
+            }} />
 
           </div>
 
