@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Compass, Calendar, Users } from 'lucide-react'
 import { EmptyState } from '@/components/empty-state'
+import { deleteTrip } from '@/app/actions/trip-actions'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -55,8 +56,8 @@ export default async function DashboardPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trips.map((trip: any) => (
-              <Link key={trip.id} href={`/trips/${trip.id}`}>
-                <Card className="h-full hover:-translate-y-2 transition-all duration-500 cursor-pointer border-[#262626]/10 rounded-[24px] overflow-hidden group">
+              <Card key={trip.id} className="h-full hover:-translate-y-2 transition-all duration-500 border-[#262626]/10 rounded-[24px] overflow-hidden group flex flex-col justify-between">
+                <Link href={`/trips/${trip.id}`} className="cursor-pointer flex-1">
                   <div className="h-48 bg-[#f5f0eb] relative overflow-hidden">
                     <div className="absolute inset-0 bg-[#262626]/5 group-hover:bg-[#3B9ECC]/20 transition-colors z-10" />
                     <div className="absolute bottom-4 left-4 z-20">
@@ -80,8 +81,15 @@ export default async function DashboardPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              </Link>
+                </Link>
+                <div className="p-6 pt-0 flex justify-end">
+                  <form action={deleteTrip.bind(null, trip.id)}>
+                    <button type="submit" className="text-[10px] font-black uppercase tracking-[0.2em] text-red-500 hover:text-red-700 transition-colors">
+                      Delete Trip
+                    </button>
+                  </form>
+                </div>
+              </Card>
             ))}
           </div>
         )}
