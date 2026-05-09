@@ -9,9 +9,18 @@ export default async function DashboardPage() {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  // Use Admin Client to bypass RLS
+  const { createClient: createSupabaseAdmin } = await import('@supabase/supabase-js')
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  
+  const adminClient = createSupabaseAdmin(supabaseUrl, supabaseServiceKey, {
+    auth: { autoRefreshToken: false, persistSession: false }
+  })
+
   // Fetch trips for this guest/user
   const tripsQuery = user
-    ? supabase
+    ? adminClient
       .from('trips')
       .select(`id, title, destination, start_date, end_date, trip_members!inner(user_id)`)
       .eq('trip_members.user_id', user.id)
