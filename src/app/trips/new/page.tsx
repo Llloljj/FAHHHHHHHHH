@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { DestinationSearch } from '@/components/destination-search'
+
 
 export default function NewTripPage() {
   const [loading, setLoading] = useState(false)
@@ -58,12 +60,10 @@ export default function NewTripPage() {
 
               <div className="space-y-2">
                 <label htmlFor="destination" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Destination</label>
-                <Input
-                  id="destination"
-                  name="destination"
+                <DestinationSearch 
+                  onSelect={(addr) => console.log('Selected:', addr)}
                   placeholder="City, Country"
-                  required
-                  className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                  name="destination"
                 />
               </div>
 

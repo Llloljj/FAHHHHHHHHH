@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Calendar, MapPin, DollarSign, Users } from 'lucide-react'
 import { AiConcierge } from '@/components/ai-concierge'
 import { ExpenseLedger } from '@/components/expense-ledger'
+import { DistanceChecker } from '@/components/distance-checker'
 
 export default async function TripDashboard({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -108,6 +109,9 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               budget_per_person: trip.budget_per_person,
               member_count: trip.trip_members?.length || 1
             }} />
+
+            {/* Distance Checker (Phase 5+) */}
+            <DistanceChecker />
 
             {/* Expense Ledger (Phase 4) */}
             <ExpenseLedger 
