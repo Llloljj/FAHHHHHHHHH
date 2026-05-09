@@ -6,16 +6,11 @@ import { redirect } from 'next/navigation'
 export async function createTrip(formData: FormData) {
   const supabase = await createClient()
 
-  // Get current session (may be anonymous)
-  let { data: { user } } = await supabase.auth.getUser()
-
-  // If no session, create anonymous one
-  if (!user) {
-    const { data } = await supabase.auth.signInAnonymously()
-    user = data.user
-  }
-
-  if (!user) throw new Error('Could not establish session')
+  // Get current session
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  // Proceed even without user (using null for creator_id)
+  const creatorId = user?.id || null
 
   const title = formData.get('title') as string
   const destination = formData.get('destination') as string
@@ -36,7 +31,7 @@ export async function createTrip(formData: FormData) {
       end_date,
       budget_per_person,
       total_budget: budget_per_person,
-      creator_id: user.id
+      creator_id: creatorId
     })
     .select('id')
     .single()
@@ -46,11 +41,13 @@ export async function createTrip(formData: FormData) {
     throw new Error('Failed to create trip')
   }
 
-  await supabase.from('trip_members').insert({
-    trip_id: trip.id,
-    user_id: user.id,
-    role: 'admin'
-  })
+  if (user) {
+    await supabase.from('trip_members').insert({
+      trip_id: trip.id,
+      user_id: user.id,
+      role: 'admin'
+    })
+  }
 
   redirect(`/trips/${trip.id}`)
 }
