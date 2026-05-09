@@ -46,7 +46,7 @@ export function TransportSearch() {
                   : "text-[#262626]/40 hover:text-[#262626] hover:bg-white/50"
               )}
             >
-              <tab.icon className={cn("w-4 h-4", type === tab.id ? "text-[#3B9ECC]" : "text-current")} />
+              <tab.icon className={cn("w-4 h-4", type === tab.id ? "accent-gradient-text" : "text-current")} />
               {tab.label}
             </button>
           ))}
@@ -114,7 +114,7 @@ export function TransportSearch() {
           <div className="flex justify-end">
             <Button 
               type="submit"
-              className="bg-[#3B9ECC] text-[#262626] rounded-full px-16 py-10 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#262626] hover:text-[#3B9ECC] transition-super group"
+              className="accent-gradient text-[#262626] rounded-full px-16 py-10 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#262626] hover:accent-gradient-text transition-super group"
             >
               Search {type}s
               <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-2 transition-transform" />

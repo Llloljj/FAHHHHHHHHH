@@ -23,7 +23,7 @@ export function Navbar() {
         {/* Left: Brand */}
         <Link
           href="/"
-          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#3B9ECC] transition-colors"
+          className="font-black text-3xl tracking-tighter uppercase text-[#262626] hover:accent-gradient-text transition-colors"
         >
           BANJARE
         </Link>
@@ -32,6 +32,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center space-x-10">
           {[
             { label: 'Destinations', href: '#' },
+            { label: 'Services', href: '#' },
             { label: 'My Trips', href: '/dashboard' },
             { label: 'Plan a Trip', href: '/trips/new' },
             { label: 'About', href: '#' },
@@ -39,8 +40,7 @@ export function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="label-utility text-[#262626] hover:text-[#3B9ECC] transition-colors"
-              style={{ letterSpacing: '0.2em' }}
+              className="text-sm md:text-base font-black uppercase tracking-[0.2em] text-[#262626] hover:accent-gradient-text transition-colors"
             >
               {item.label}
             </Link>
@@ -51,8 +51,7 @@ export function Navbar() {
         <div className="flex items-center space-x-4">
           <Link
             href="/trips/new"
-            className="bg-[#3B9ECC] text-[#262626] rounded-full px-8 py-3 label-utility hover:bg-[#262626] hover:text-[#3B9ECC] transition-colors flex items-center gap-2"
-            style={{ letterSpacing: '0.15em' }}
+            className="accent-gradient text-white rounded-full px-8 py-3 text-sm md:text-base font-black uppercase tracking-[0.15em] hover:bg-[#262626] hover:accent-gradient-text transition-colors flex items-center gap-2"
           >
             <PlusCircle className="h-3 w-3 shrink-0" />
             New Trip

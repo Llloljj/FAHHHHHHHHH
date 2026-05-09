@@ -37,14 +37,14 @@ export default async function MarketplacePage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <RevealUp>
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-[#262626] leading-[0.85]">
-              LUXURY <br /> <span className="text-[#3B9ECC]">MARKETPLACE</span>
+              LUXURY <br /> <span className="accent-gradient-text">MARKETPLACE</span>
             </h1>
             <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-lg">
               Discover unique homes, private vehicles, and expert local guides verified for the BANJARE community.
             </p>
           </RevealUp>
           <RevealUp delay={200}>
-            <Link href="/marketplace/new" className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-colors flex items-center gap-2">
+            <Link href="/marketplace/new" className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:accent-gradient hover:text-[#262626] transition-colors flex items-center gap-2">
               <PlusCircle className="w-4 h-4" />
               List Your Service
             </Link>
@@ -105,11 +105,11 @@ export default async function MarketplacePage() {
                     <div className="space-y-3 px-2">
                       <div className="flex justify-between items-start">
                         <div>
-                          <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC] mb-1">
+                          <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] accent-gradient-text mb-1">
                             <MapPin className="w-3 h-3 mr-1" />
                             {mock.loc}
                           </div>
-                          <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:text-[#3B9ECC] transition-colors">
+                          <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:accent-gradient-text transition-colors">
                             {mock.title}
                           </h3>
                         </div>
@@ -156,11 +156,11 @@ export default async function MarketplacePage() {
                       <div className="space-y-3 px-2">
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC] mb-1">
+                            <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] accent-gradient-text mb-1">
                               <MapPin className="w-3 h-3 mr-1" />
                               {listing.location}
                             </div>
-                            <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:text-[#3B9ECC] transition-colors">
+                            <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:accent-gradient-text transition-colors">
                               {listing.title}
                             </h3>
                           </div>

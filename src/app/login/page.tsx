@@ -61,7 +61,7 @@ export default function LoginPage() {
       {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#262626] items-center justify-center p-16 flex-col">
         <div className="max-w-md">
-          <div className="text-[#3B9ECC] text-[10px] font-black uppercase tracking-[0.3em] mb-8">Welcome to</div>
+          <div className="accent-gradient-text text-[10px] font-black uppercase tracking-[0.3em] mb-8">Welcome to</div>
           <h1 className="text-7xl font-black tracking-tighter uppercase text-white leading-[0.85] mb-8">
             BANJARE
           </h1>
@@ -71,8 +71,8 @@ export default function LoginPage() {
           <div className="flex flex-col space-y-6">
             {['AI Itinerary Generator', 'Group Expense Splitter', 'P2P Luxury Marketplace', 'Smart Voting System'].map((f, i) => (
               <div key={i} className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-full bg-[#3B9ECC]/20 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-4 h-4 text-[#3B9ECC]" />
+                <div className="w-8 h-8 rounded-full accent-gradient/20 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4 accent-gradient-text" />
                 </div>
                 <span className="text-white/80 font-medium">{f}</span>
               </div>
@@ -91,7 +91,7 @@ export default function LoginPage() {
             <p className="text-[#262626]/60 font-medium">
               {mode === 'signin' ? "Don't have an account?" : 'Already have an account?'}
               <button onClick={() => { setMode(mode === 'signin' ? 'signup' : 'signin'); setError(null); setSuccess(null) }}
-                className="ml-2 text-[#3B9ECC] font-black uppercase text-sm hover:underline">
+                className="ml-2 accent-gradient-text font-black uppercase text-sm hover:underline">
                 {mode === 'signin' ? 'Sign Up' : 'Sign In'}
               </button>
             </p>
@@ -108,7 +108,7 @@ export default function LoginPage() {
           </div>
 
           {success ? (
-            <div className="bg-[#3B9ECC]/20 border border-[#3B9ECC] rounded-[16px] p-6 text-center">
+            <div className="accent-gradient/20 border accent-gradient-border rounded-[16px] p-6 text-center">
               <p className="text-[#262626] font-bold">{success}</p>
             </div>
           ) : (
@@ -147,7 +147,7 @@ export default function LoginPage() {
               )}
 
               <button type="submit" disabled={loading}
-                className="w-full bg-[#262626] text-white hover:bg-[#3B9ECC] hover:text-[#262626] transition-all rounded-full py-4 text-[12px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:opacity-60">
+                className="w-full bg-[#262626] text-white hover:accent-gradient hover:text-[#262626] transition-all rounded-full py-4 text-[12px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:opacity-60">
                 {loading ? 'Please wait...' : (
                   <>
                     {mode === 'signin' ? 'Sign In' : mode === 'signup' ? 'Create Account' : 'Send Magic Link'}
@@ -168,7 +168,7 @@ export default function LoginPage() {
               </div>
 
               <button type="button" onClick={handleGoogleLogin}
-                className="w-full border-2 border-[#262626]/10 rounded-full py-4 text-[12px] font-black uppercase tracking-[0.15em] text-[#262626] hover:border-[#3B9ECC] hover:text-[#3B9ECC] transition-all flex items-center justify-center gap-3 bg-white">
+                className="w-full border-2 border-[#262626]/10 rounded-full py-4 text-[12px] font-black uppercase tracking-[0.15em] text-[#262626] hover:accent-gradient-border hover:accent-gradient-text transition-all flex items-center justify-center gap-3 bg-white">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />

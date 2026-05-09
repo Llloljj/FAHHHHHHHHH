@@ -32,50 +32,51 @@ export default function Home() {
     <div className="flex flex-col min-h-screen pt-[80px]">
 
       {/* ── HERO ──────────────────────────────────── */}
-      <section className="relative min-h-[calc(100vh-80px)] flex items-center px-8 md:px-16 overflow-hidden bg-[#fdf8f3]">
+      <section className="relative min-h-[calc(100vh-80px)] flex items-center px-8 md:px-16 overflow-hidden">
 
-        {/* Subtle background texture */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #262626 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1669719022178-d00c119bb24d?q=80&w=1149&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
         />
+        
+        {/* Light Overlay for readability */}
+        <div className="absolute inset-0 z-0 bg-[#fdf8f3]/30" />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 w-full relative z-10">
 
           {/* Left Side */}
-          <div className="col-span-1 md:col-span-7 flex flex-col justify-center hero-fade-in">
+          <div className="col-span-1 md:col-span-7 flex flex-col justify-center hero-slide-left">
 
             {/* Kicker label */}
             <div className="flex items-center gap-4 mb-10">
-              <span className="label-utility text-[#3B9ECC]">Peer-to-Peer Luxury Travel</span>
-              <span className="block w-12 h-px bg-[#3B9ECC]" />
+              <span style={{ fontSize: '18px' }} className="font-black uppercase tracking-[0.2em] accent-gradient-text">Peer-to-Peer Luxury Travel</span>
+              <span className="block w-12 h-px accent-gradient" />
             </div>
 
-            <h1 className="font-black leading-[0.82] tracking-tighter text-[#262626] uppercase"
-              style={{ fontSize: 'clamp(72px, 14vw, 200px)' }}>
+            <h1 className="font-black leading-[0.82] tracking-widest text-[#262626] uppercase"
+              style={{ fontSize: 'clamp(48px, 10vw, 120px)' }}>
               BEYOND <br />
-              <span className="lowercase italic text-[#3B9ECC] font-light tracking-normal">the</span>{' '}
+              <span className="lowercase italic accent-gradient-text font-light tracking-widest">the</span>{' '}
               <br />
               ORDINARY
             </h1>
 
-            <p className="mt-12 text-xl md:text-2xl font-medium text-[#262626]/70 max-w-xl leading-relaxed">
+            <p className="mt-12 text-xl md:text-2xl font-medium text-white max-w-xl leading-relaxed">
               Group itineraries curated by AI, powered by verified local experts. Travel elevated.
             </p>
 
             <div className="mt-14 flex flex-wrap items-center gap-8">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#3B9ECC] hover:text-[#262626] transition-colors text-sm"
+                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:accent-gradient hover:text-[#262626] transition-colors text-sm"
               >
                 Start Planning
                 <span className="text-base leading-none">→</span>
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 border-[#3B9ECC] pb-1 hover:text-[#3B9ECC] transition-colors text-sm"
+                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 accent-gradient-border pb-1 hover:accent-gradient-text transition-colors text-sm"
               >
                 See How It Works
               </Link>
@@ -85,29 +86,38 @@ export default function Home() {
           {/* Right Side */}
           <div className="col-span-1 md:col-span-5 relative flex items-center justify-center hero-slide-right">
 
-            {/* Hero Image Card */}
-            <div className="relative w-full aspect-[3/4] rounded-[24px] overflow-hidden group cursor-pointer">
-              <div className="img-grayscale group-hover:grayscale-0 w-full h-full relative">
-                <Image
-                  src="/hero.png"
-                  alt="Luxury travel experience"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+            {/* Hero Video Card */}
+            <div className="relative w-4/5 md:w-3/4 aspect-[3/4] rounded-[24px] overflow-hidden group cursor-pointer border-[6px] border-white transition-transform duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src="/hero-video.mp4" type="video/mp4" />
+              </video>
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-[#262626]/55 z-10 pointer-events-none" />
+              {/* Quote text centered */}
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+                <blockquote className="font-black italic text-white leading-tight"
+                  style={{ fontSize: 'clamp(20px, 3vw, 42px)' }}>
+                  &ldquo;Just in case&rdquo;
+                  <br />
+                  is the curse of packing.
+                </blockquote>
               </div>
-              {/* Subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#262626]/30 to-transparent z-10 pointer-events-none" />
               {/* Corner label */}
               <div className="absolute bottom-6 left-6 z-20">
-                <p className="label-utility text-white/80">Premium Experience</p>
+                <p className="label-utility text-white">Premium Experience</p>
               </div>
             </div>
 
             {/* Floating Concierge Badge */}
-            <div className="absolute -left-8 md:-left-16 bottom-20 w-[160px] h-[160px] rounded-full bg-[#3B9ECC] flex flex-col items-center justify-center text-[#262626] animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
-              <span className="text-4xl italic font-black leading-none">01</span>
-              <span className="text-[8px] uppercase tracking-[0.25em] font-black mt-3 text-center leading-tight px-4">
+            <div className="absolute -left-8 md:-left-16 bottom-20 w-[180px] h-[180px] rounded-full accent-gradient flex flex-col items-center justify-center text-white animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
+              <span className="text-6xl italic font-medium leading-none">01</span>
+              <span className="text-xs uppercase tracking-[0.25em] font-black mt-3 text-center leading-tight px-4">
                 AI Travel<br />Concierge
               </span>
             </div>
@@ -121,7 +131,7 @@ export default function Home() {
           <div className="flex items-end justify-between mb-16 flex-wrap gap-8">
             <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85]"
               style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
-              The <span className="text-[#3B9ECC] italic font-light">BANJARE</span><br /> Suite
+              The <span className="accent-gradient-text italic font-light">BANJARE</span><br /> Suite
             </h2>
             <p className="label-utility text-[#262626]/40 max-w-[200px] text-right leading-loose">
               Three pillars of premium group travel
@@ -133,10 +143,10 @@ export default function Home() {
           {SERVICES.map((service, i) => (
             <RevealUp key={i}>
               <div
-                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-all duration-500 cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
+                className={`p-10 md:p-12 border-[#262626]/10 group hover:accent-gradient transition-all duration-500 cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
                 style={{ minHeight: '320px' }}
               >
-                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-all duration-500 mb-10 leading-none">
+                <div className="text-4xl font-black italic accent-gradient-text group-hover:text-[#262626] transition-all duration-500 mb-10 leading-none">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-5">
@@ -156,36 +166,48 @@ export default function Home() {
       </section>
 
       {/* ── MANIFESTO STRIP ────────────────────────── */}
-      <section className="py-24 px-8 md:px-16 bg-[#262626] overflow-hidden">
-        <RevealUp>
+      <section className="relative py-32 px-8 md:px-16 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1705081439303-6a82c35bd9c7?q=80&w=2018&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        />
+        {/* Dark Overlay for readability */}
+        <div className="absolute inset-0 z-0 bg-[#262626]/60" />
+
+        <div className="relative z-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <h2 className="font-black uppercase tracking-tighter text-[#fdf8f3] leading-[0.85]"
-              style={{ fontSize: 'clamp(36px, 5vw, 72px)' }}>
-              Travel is not a<br />
-              <span className="text-[#3B9ECC] italic font-light">destination</span>,<br />
-              it&apos;s a state of mind.
-            </h2>
-            <div className="flex flex-col gap-6 md:max-w-xs">
-              <p className="text-[#fdf8f3]/50 font-medium leading-relaxed">
-                BANJARE connects you with verified local experts and AI-curated experiences that redefine what group travel means.
-              </p>
-              <Link href="/login" className="label-utility text-[#3B9ECC] hover:text-white transition-colors inline-flex items-center gap-3">
-                Join the community <span>→</span>
-              </Link>
-            </div>
+            <RevealUp direction="left">
+              <h2 className="font-black uppercase tracking-tighter text-[#fdf8f3] leading-[0.85]"
+                style={{ fontSize: 'clamp(36px, 5vw, 72px)' }}>
+                Travel is not a<br />
+                <span className="accent-gradient-text italic font-light">destination</span>,<br />
+                it&apos;s a state of mind.
+              </h2>
+            </RevealUp>
+            <RevealUp direction="right">
+              <div className="flex flex-col gap-6 md:max-w-md">
+                <p className="text-lg md:text-xl text-[#fdf8f3]/80 font-medium leading-relaxed">
+                  BANJARE connects you with verified local experts and AI-curated experiences that redefine what group travel means.
+                </p>
+                <Link href="/login" className="text-sm md:text-base font-black uppercase tracking-[0.2em] accent-gradient-text hover:text-white transition-colors inline-flex items-center gap-3">
+                  Join the community <span className="text-xl">→</span>
+                </Link>
+              </div>
+            </RevealUp>
           </div>
-        </RevealUp>
+        </div>
       </section>
 
       {/* ── PORTFOLIO STAGGERED GRID ───────────────── */}
       <section className="py-32 px-8 md:px-16 bg-[#fdf8f3]">
         <RevealUp>
           <div className="mb-24">
-            <p className="label-utility text-[#3B9ECC] mb-6">Our Portfolio</p>
+            <p className="label-utility accent-gradient-text mb-6">Our Portfolio</p>
             <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85]"
               style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
               Curated <br />
-              <span className="text-[#3B9ECC] italic font-light">Destinations</span>
+              <span className="accent-gradient-text italic font-light">Destinations</span>
             </h2>
           </div>
         </RevealUp>
@@ -211,7 +233,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="label-utility text-[#3B9ECC] mb-3">{item.tag}</div>
+                <div className="label-utility accent-gradient-text mb-3">{item.tag}</div>
                 <h3 className="text-3xl font-black text-[#262626] uppercase tracking-tighter flex items-center gap-4 flex-wrap">
                   {item.title}
                   <span className="text-lg opacity-20">•</span>
@@ -284,7 +306,7 @@ export default function Home() {
               }
             ].map((col) => (
               <div key={col.heading}>
-                <h4 className="label-utility text-[#3B9ECC] underline underline-offset-8 mb-8">
+                <h4 className="label-utility accent-gradient-text underline underline-offset-8 mb-8">
                   {col.heading}
                 </h4>
                 <ul className="space-y-4">
@@ -293,7 +315,7 @@ export default function Home() {
                       {link.href ? (
                         <Link
                           href={link.href}
-                          className="text-[#262626] hover:text-[#3B9ECC] font-bold text-xs uppercase tracking-widest transition-colors"
+                          className="text-[#262626] hover:accent-gradient-text font-bold text-xs uppercase tracking-widest transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -313,8 +335,8 @@ export default function Home() {
         <div className="pt-8 border-t border-[#262626]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-black uppercase tracking-[0.2em] text-[#262626]/30">
           <p>© 2026 BANJARE. All Rights Reserved.</p>
           <div className="flex gap-8">
-            <Link href="#" className="hover:text-[#3B9ECC] transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-[#3B9ECC] transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:accent-gradient-text transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:accent-gradient-text transition-colors">Terms of Service</Link>
           </div>
         </div>
       </footer>
