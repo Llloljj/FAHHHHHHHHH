@@ -2,11 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-export function RevealUp({ children, className = '' }: { children: React.ReactNode, className?: string }) {
+interface RevealUpProps {
+  children: React.ReactNode
+  className?: string
+  delay?: number // ms
+}
+
+export function RevealUp({ children, className = '', delay = 0 }: RevealUpProps) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const currentRef = ref.current
+    if (!currentRef) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -14,28 +23,30 @@ export function RevealUp({ children, className = '' }: { children: React.ReactNo
           observer.unobserve(entry.target)
         }
       },
-      {
-        threshold: 0.15,
-      }
+      { threshold: 0.05, rootMargin: '50px' }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
+    observer.observe(currentRef)
 
-    // Clean up
-    const currentRef = ref.current;
+    // Fallback: Ensure visibility even if observer fails
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 800)
+
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
+      if (currentRef) observer.unobserve(currentRef)
+      clearTimeout(timer)
     }
   }, [])
 
   return (
     <div
       ref={ref}
-      className={`transition-super ${isVisible ? 'reveal-up-active' : 'reveal-up-start'} ${className}`}
+      className={`${isVisible ? 'reveal-up-active' : 'reveal-up-start'} ${className}`}
+      style={{
+        transitionDelay: `${delay}ms`,
+        visibility: isVisible ? 'visible' : 'hidden'
+      }}
     >
       {children}
     </div>

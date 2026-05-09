@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { DestinationSearch } from '@/components/destination-search'
+import { RevealUp } from '@/components/reveal-up'
+
 
 export default function NewTripPage() {
   const [loading, setLoading] = useState(false)
@@ -15,7 +18,7 @@ export default function NewTripPage() {
     e.preventDefault()
     setLoading(true)
     setError(null)
-    
+
     try {
       const formData = new FormData(e.currentTarget)
       await createTrip(formData)
@@ -27,13 +30,13 @@ export default function NewTripPage() {
 
   return (
     <div className="flex min-h-screen pt-24 px-4 bg-background pb-24">
-      <div className="w-full max-w-2xl mx-auto reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-        <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#e4a4bd] hover:text-[#262626] transition-colors mb-8 inline-block">
+      <RevealUp className="w-full max-w-2xl mx-auto">
+        <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] hover:text-[#262626] transition-colors mb-8 inline-block">
           ← Back to Dashboard
         </Link>
-        
+
         <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#262626] mb-8">
-          Craft Your <span className="text-[#e4a4bd]">Journey</span>
+          Craft Your <span className="text-[#3B9ECC]">Journey</span>
         </h1>
 
         <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px]">
@@ -52,18 +55,16 @@ export default function NewTripPage() {
                   name="title"
                   placeholder="E.g., Summer in Kyoto"
                   required
-                  className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                  className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]"
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="destination" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Destination</label>
-                <Input
-                  id="destination"
-                  name="destination"
+                <DestinationSearch
+                  onSelect={(addr) => console.log('Selected:', addr)}
                   placeholder="City, Country"
-                  required
-                  className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                  name="destination"
                 />
               </div>
 
@@ -75,7 +76,7 @@ export default function NewTripPage() {
                     name="start_date"
                     type="date"
                     required
-                    className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                    className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]"
                   />
                 </div>
                 <div className="space-y-2">
@@ -85,7 +86,7 @@ export default function NewTripPage() {
                     name="end_date"
                     type="date"
                     required
-                    className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                    className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]"
                   />
                 </div>
               </div>
@@ -93,31 +94,31 @@ export default function NewTripPage() {
               <div className="space-y-2">
                 <label htmlFor="budget_per_person" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Budget Per Person (Activity/Local Only)</label>
                 <div className="relative">
-                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#262626]/50 font-bold">$</span>
+                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#262626]/50 font-bold">₹</span>
                   <Input
                     id="budget_per_person"
                     name="budget_per_person"
                     type="number"
                     min="0"
-                    step="0.01"
-                    placeholder="1500"
+                    step="1"
+                    placeholder="50000"
                     required
-                    className="rounded-full pl-12 pr-6 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd]"
+                    className="rounded-full pl-12 pr-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]"
                   />
                 </div>
               </div>
 
               {error && <div className="text-sm text-destructive font-medium p-4 bg-destructive/10 rounded-[12px]">{error}</div>}
-              
+
               <div className="pt-4">
-                <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white hover:bg-[#e4a4bd] hover:text-[#262626] transition-super rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em]">
-                  {loading ? 'Initializing Voyage...' : 'Create Trip'}
+                <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white hover:bg-[#3B9ECC] hover:text-[#262626] transition-super rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em]">
+                  {loading ? 'Initializing BANJARE...' : 'Create Trip'}
                 </Button>
               </div>
             </form>
           </CardContent>
         </Card>
-      </div>
+      </RevealUp>
     </div>
   )
 }

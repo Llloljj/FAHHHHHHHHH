@@ -24,6 +24,8 @@ type TripContext = {
   end_date: string
   budget_per_person: number
   member_count: number
+  expenses?: any[]
+  members?: any[]
 }
 
 export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
@@ -50,7 +52,7 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
     <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden flex flex-col h-[600px]">
       <CardHeader className="bg-[#262626] text-white p-6 pb-4 shrink-0">
         <CardTitle className="text-2xl font-black uppercase tracking-tighter flex items-center">
-          <Bot className="w-6 h-6 mr-3 text-[#e4a4bd]" />
+          <Bot className="w-6 h-6 mr-3 text-[#3B9ECC]" />
           AI Concierge
         </CardTitle>
         <div className="flex gap-2 mt-4 overflow-x-auto pb-1">
@@ -63,7 +65,7 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
                 onClick={() => setActiveMode(mode.id as AiMode)}
                 className={`flex items-center px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] transition-all whitespace-nowrap ${
                   isActive
-                    ? 'bg-[#e4a4bd] text-[#262626]'
+                    ? 'bg-[#3B9ECC] text-[#262626]'
                     : 'bg-white/10 text-white/70 hover:bg-white/20'
                 }`}
               >
@@ -117,12 +119,12 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={`Ask the ${activeMode} assistant...`}
-              className="w-full rounded-full bg-[#f5f0eb] border-0 px-6 py-6 pr-14 focus-visible:ring-[#e4a4bd] text-sm"
+              className="w-full rounded-full bg-[#f5f0eb] border-0 px-6 py-6 pr-14 focus-visible:ring-[#3B9ECC] text-sm"
             />
             <Button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 p-0 bg-[#262626] text-[#e4a4bd] hover:bg-[#e4a4bd] hover:text-[#262626] transition-all"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 p-0 bg-[#262626] text-[#3B9ECC] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all"
             >
               <Send className="w-4 h-4" />
             </Button>

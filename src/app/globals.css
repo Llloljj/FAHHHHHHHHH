@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================
+   BANJARE — Design Tokens
+   Sky Blue  : #3B9ECC  (freedom of the sky)
+   Nature Green: #52B788 (freshness of nature)
+   Gradient  : 135deg #3B9ECC → #52B788
+   ========================================= */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -50,101 +57,149 @@
   --animate-bounce-slow: bounce-slow 4s ease-in-out infinite;
 
   @keyframes bounce-slow {
-    0%, 100% {
-      transform: translateY(-5%);
-    }
-    50% {
-      transform: translateY(5%);
-    }
+    0%, 100% { transform: translateY(-5%); }
+    50%       { transform: translateY(5%); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
   }
 }
 
 :root {
-  --background: #fdf8f3;
-  --foreground: #262626;
-  --card: #f5f0eb;
-  --card-foreground: #262626;
-  --popover: #fdf8f3;
-  --popover-foreground: #262626;
-  --primary: #e4a4bd;
-  --primary-foreground: #262626;
-  --secondary: #f5f0eb;
-  --secondary-foreground: #262626;
-  --muted: #f5f0eb;
-  --muted-foreground: #e4a4bd;
-  --accent: #e4a4bd;
-  --accent-foreground: #262626;
+  /* Backgrounds — kept neutral to let the gradient pop */
+  --background: #f4f9f7;
+  --foreground: #1a2e26;
+  --card: #eaf4ef;
+  --card-foreground: #1a2e26;
+  --popover: #f4f9f7;
+  --popover-foreground: #1a2e26;
+
+  /* Primary = sky blue */
+  --primary: #3B9ECC;
+  --primary-foreground: #ffffff;
+
+  /* Secondary = nature green */
+  --secondary: #52B788;
+  --secondary-foreground: #ffffff;
+
+  --muted: #eaf4ef;
+  --muted-foreground: #3B9ECC;
+  --accent: #52B788;
+  --accent-foreground: #ffffff;
+
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e4a4bd;
-  --input: #e4a4bd;
-  --ring: #e4a4bd;
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
+  --border: rgba(26, 46, 38, 0.08);
+  --input: #3B9ECC;
+  --ring: #3B9ECC;
+
+  --chart-1: #3B9ECC;
+  --chart-2: #52B788;
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+
   --radius: 24px;
-  --sidebar: #fdf8f3;
-  --sidebar-foreground: #262626;
-  --sidebar-primary: #e4a4bd;
-  --sidebar-primary-foreground: #262626;
-  --sidebar-accent: #f5f0eb;
-  --sidebar-accent-foreground: #262626;
-  --sidebar-border: #e4a4bd;
-  --sidebar-ring: #e4a4bd;
+
+  --sidebar: #f4f9f7;
+  --sidebar-foreground: #1a2e26;
+  --sidebar-primary: #3B9ECC;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf4ef;
+  --sidebar-accent-foreground: #1a2e26;
+  --sidebar-border: #52B788;
+  --sidebar-ring: #3B9ECC;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: #f4f9f7;
+  --foreground: #1a2e26;
+  --card: #eaf4ef;
+  --card-foreground: #1a2e26;
+  --popover: #f4f9f7;
+  --popover-foreground: #1a2e26;
+  --primary: #3B9ECC;
+  --primary-foreground: #ffffff;
+  --secondary: #52B788;
+  --secondary-foreground: #ffffff;
+  --muted: #eaf4ef;
+  --muted-foreground: #3B9ECC;
+  --accent: #52B788;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --border: rgba(26, 46, 38, 0.08);
+  --input: #3B9ECC;
+  --ring: #3B9ECC;
+  --sidebar: #f4f9f7;
+  --sidebar-foreground: #1a2e26;
+  --sidebar-primary: #3B9ECC;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf4ef;
+  --sidebar-accent-foreground: #1a2e26;
+  --sidebar-border: #52B788;
+  --sidebar-ring: #3B9ECC;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'League Spartan', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   html {
-    @apply font-sans;
+    scroll-behavior: smooth;
   }
 }
 
-/* Custom Utilities for Super Travel */
+/* =========================================
+   BANJARE — Core Utility Classes
+   ========================================= */
+
+/* Sky-to-nature gradient — the signature accent */
+.accent-gradient {
+  background: linear-gradient(135deg, #3B9ECC 0%, #52B788 100%);
+}
+
+.accent-gradient-text {
+  background: linear-gradient(135deg, #3B9ECC 0%, #52B788 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-gradient-border {
+  border-image: linear-gradient(135deg, #3B9ECC, #52B788) 1;
+}
+
+/* Weighted transition */
 .transition-super {
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Scroll-reveal system */
 .reveal-up-start {
   opacity: 0;
   transform: translateY(40px);
@@ -153,4 +208,83 @@
 .reveal-up-active {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Grayscale image reveal */
+.img-grayscale {
+  filter: grayscale(100%);
+  transform: scale(1.0);
+  transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-grayscale:hover,
+.group:hover .img-grayscale {
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
+
+/* Glassmorphism nav — tinted with nature hint */
+.glass-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(244, 249, 247, 0.85);
+  border-bottom: 1px solid rgba(83, 183, 136, 0.12);
+}
+
+/* Utility label */
+.label-utility {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+/* Bounce badge */
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+/* Hero entry animations */
+.hero-fade-in {
+  animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-slide-right {
+  animation: slide-in-right 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+/* Glass utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Scrollbar — sky-to-nature gradient thumb */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f4f9f7; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3B9ECC, #52B788);
+  border-radius: 20px;
+  border: 2px solid #f4f9f7;
+}
+
+/* Service card gradient hover */
+.service-card {
+  background: transparent;
+  transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover {
+  background: linear-gradient(135deg, rgba(59, 158, 204, 0.1) 0%, rgba(82, 183, 136, 0.1) 100%);
 }

@@ -1,62 +1,62 @@
-import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
-import { LogOut, LayoutDashboard, PlusCircle } from 'lucide-react'
+'use client'
 
-export async function Navbar() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { PlusCircle } from 'lucide-react'
+
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 h-[80px] z-50 bg-[#fdf8f3]/80 backdrop-blur-[12px] border-b border-[#262626]/5 transition-super">
+    <nav
+      className={`fixed top-0 left-0 right-0 h-[80px] z-50 transition-colors duration-300 glass-nav ${scrolled ? 'shadow-sm shadow-[#262626]/5' : ''
+        }`}
+    >
       <div className="flex h-full items-center justify-between px-8 md:px-16 mx-auto">
+
         {/* Left: Brand */}
-        <Link href="/" className="font-black text-2xl tracking-tighter uppercase text-[#262626]">
-          VOYAGE
+        <Link
+          href="/"
+          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#3B9ECC] transition-colors"
+        >
+          BANJARE
         </Link>
 
         {/* Center: Menu */}
-        <div className="hidden md:flex items-center space-x-12">
-          {user ? (
-            <>
-              <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-                My Trips
-              </Link>
-              <Link href="/trips/new" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-                Plan a Trip
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link href="/login" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-                How It Works
-              </Link>
-              <Link href="/login" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
-                AI Concierge
-              </Link>
-            </>
-          )}
+        <div className="hidden md:flex items-center space-x-10">
+          {[
+            { label: 'Destinations', href: '#' },
+            { label: 'My Trips', href: '/dashboard' },
+            { label: 'Plan a Trip', href: '/trips/new' },
+            { label: 'About', href: '#' },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="label-utility text-[#262626] hover:text-[#3B9ECC] transition-colors"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
-        {/* Right: CTA / Auth */}
+        {/* Right: CTA */}
         <div className="flex items-center space-x-4">
-          {user ? (
-            <div className="flex items-center gap-4">
-              <Link href="/trips/new" className="hidden md:flex bg-[#262626] text-white rounded-full px-[24px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#e4a4bd] hover:text-[#262626] transition-super items-center gap-2">
-                <PlusCircle className="h-3 w-3" />
-                New Trip
-              </Link>
-              <form action="/api/auth/signout" method="POST">
-                <button type="submit" className="bg-[#f5f0eb] text-[#262626] rounded-full px-[24px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#e4a4bd] transition-super flex items-center gap-2">
-                  <LogOut className="h-3 w-3" />
-                  Sign Out
-                </button>
-              </form>
-            </div>
-          ) : (
-            <Link href="/login" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
-              Get Started
-            </Link>
-          )}
+          <Link
+            href="/trips/new"
+            className="bg-[#3B9ECC] text-[#262626] rounded-full px-8 py-3 label-utility hover:bg-[#262626] hover:text-[#3B9ECC] transition-colors flex items-center gap-2"
+            style={{ letterSpacing: '0.15em' }}
+          >
+            <PlusCircle className="h-3 w-3 shrink-0" />
+            New Trip
+          </Link>
         </div>
       </div>
     </nav>
