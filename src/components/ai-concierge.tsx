@@ -8,11 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Bot, Map, DollarSign, Activity, PieChart, Vote, Send } from 'lucide-react'
+import { Bot, Map, Activity, PieChart, Vote, Send } from 'lucide-react'
+
+const RupeeIcon = (props: any) => (
+  <span {...props} className={props.className + " font-black flex items-center justify-center"}>₹</span>
+)
 
 const MODE_CONFIG = [
   { id: AI_MODES.ITINERARY, icon: Map, label: 'Itinerary' },
-  { id: AI_MODES.BUDGET, icon: DollarSign, label: 'Budget' },
+  { id: AI_MODES.BUDGET, icon: RupeeIcon, label: 'Budget' },
   { id: AI_MODES.ACTIVITY, icon: Activity, label: 'Activity' },
   { id: AI_MODES.LEDGER, icon: PieChart, label: 'Ledger' },
   { id: AI_MODES.VOTING, icon: Vote, label: 'Voting' },

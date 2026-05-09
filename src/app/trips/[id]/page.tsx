@@ -124,7 +124,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                 </Card>
                 <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
                   <CardContent className="p-6">
-                    <DollarSign className="w-6 h-6 text-[#3B9ECC] mb-4" />
+                    <div className="w-6 h-6 text-[#3B9ECC] mb-4 text-xl font-bold flex items-center justify-center">₹</div>
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Per Person</div>
                     <div className="text-xl font-bold text-[#262626]">₹{trip.budget_per_person}</div>
                   </CardContent>
@@ -133,7 +133,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                   <CardContent className="p-6">
                     <Users className="w-6 h-6 text-[#3B9ECC] mb-4" />
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Members</div>
-                    <div className="text-xl font-bold text-[#262626]">{trip.trip_members?.length || 0}</div>
+                    <div className="text-xl font-bold text-[#262626]">{trip.group_size || 1}</div>
                   </CardContent>
                 </Card>
               </div>
