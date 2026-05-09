@@ -32,7 +32,6 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
     .select('*')
     .eq('trip_id', id)
 
-
   // Fetch Marketplace Bookings
   const { data: bookings } = await supabase
     .from('bookings')
