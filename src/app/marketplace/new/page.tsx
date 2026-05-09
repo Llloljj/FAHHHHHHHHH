@@ -109,6 +109,12 @@ export default function NewListingPage() {
                       <Input name="location" placeholder="City, State" required className="rounded-full px-6 py-6" />
                     </div>
                   </div>
+                  {type === 'vehicle' && (
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e4a4bd]">Security Deposit (Refundable) (₹)</label>
+                      <Input name="security_deposit_amount" type="number" placeholder="2000" className="rounded-full px-6 py-6 border-[#e4a4bd]/20" />
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em]">Description</label>
                     <Textarea name="description" placeholder="Detailed description of features, amenities, or services..." className="rounded-[24px] p-6" />

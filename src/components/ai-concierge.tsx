@@ -24,6 +24,8 @@ type TripContext = {
   end_date: string
   budget_per_person: number
   member_count: number
+  expenses?: any[]
+  members?: any[]
 }
 
 export function AiConcierge({ tripContext }: { tripContext: TripContext }) {

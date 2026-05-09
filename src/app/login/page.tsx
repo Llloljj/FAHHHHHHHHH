@@ -63,7 +63,7 @@ export default function LoginPage() {
         <div className="max-w-md">
           <div className="text-[#e4a4bd] text-[10px] font-black uppercase tracking-[0.3em] mb-8">Welcome to</div>
           <h1 className="text-7xl font-black tracking-tighter uppercase text-white leading-[0.85] mb-8">
-            VOYAGE
+            BANJARA
           </h1>
           <p className="text-white/60 text-xl font-medium leading-relaxed mb-16">
             Plan group trips with AI, split expenses seamlessly, and discover luxury peer-to-peer travel.

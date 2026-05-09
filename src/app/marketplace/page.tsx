@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { BookingModal } from '@/components/booking-modal'
 
 export default async function MarketplacePage() {
   const supabase = await createClient()
@@ -38,7 +39,7 @@ export default async function MarketplacePage() {
               LUXURY <br /> <span className="text-[#e4a4bd]">MARKETPLACE</span>
             </h1>
             <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-lg">
-              Discover unique homes, private vehicles, and expert local guides verified for the Super Travel community.
+              Discover unique homes, private vehicles, and expert local guides verified for the Banjara community.
             </p>
           </div>
           <div className="flex flex-col items-end gap-4 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_forwards]">
@@ -127,8 +128,47 @@ export default async function MarketplacePage() {
              ))
           ) : (
             listings.map((listing) => (
-              // Real listing cards...
-              <div key={listing.id}>Real Listing: {listing.title}</div>
+              <BookingModal key={listing.id} listing={listing}>
+                <Card className="group border-0 bg-transparent overflow-hidden cursor-pointer">
+                  <CardContent className="p-0">
+                    <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden mb-6">
+                      <img 
+                        src={listing.images?.[0] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'} 
+                        alt={listing.title}
+                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute top-6 right-6">
+                        <span className="bg-white/90 backdrop-blur-md text-[#262626] text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full flex items-center gap-2">
+                          {listing.is_verified ? (
+                            <><ShieldCheck className="w-3 h-3 text-green-500" /> Verified</>
+                          ) : (
+                            <><ShieldCheck className="w-3 h-3 text-gray-400" /> Pending</>
+                          )}
+                        </span>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#262626]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    
+                    <div className="space-y-3 px-2">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-[#e4a4bd] mb-1">
+                            <MapPin className="w-3 h-3 mr-1" />
+                            {listing.location}
+                          </div>
+                          <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626] group-hover:text-[#e4a4bd] transition-colors">
+                            {listing.title}
+                          </h3>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xl font-black text-[#262626]">₹{listing.price_per_day}</div>
+                          <div className="text-[9px] font-black uppercase text-[#262626]/40">Per Day</div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </BookingModal>
             ))
           )}
         </div>

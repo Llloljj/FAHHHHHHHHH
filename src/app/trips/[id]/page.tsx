@@ -40,6 +40,12 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
     .eq('trip_id', id)
     .order('date', { ascending: false })
 
+  // Fetch settlements
+  const { data: settlements } = await supabase
+    .from('settlements')
+    .select('*')
+    .eq('trip_id', id)
+
   const inviteUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/trips/${id}/invite`
 
   return (
@@ -51,7 +57,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
           <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#e4a4bd] hover:text-[#262626] transition-colors mb-8 inline-block">
             ← Back to Dashboard
           </Link>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-4 gap-8">
             <div>
               <div className="text-[10px] text-[#e4a4bd] font-black uppercase tracking-[0.2em] mb-4 flex items-center">
                 <MapPin className="w-3 h-3 mr-2" />
@@ -61,6 +67,13 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                 {trip.title}
               </h1>
             </div>
+            <Link 
+              href={`/trips/${id}/itinerary`}
+              className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super flex items-center gap-2 shadow-xl"
+            >
+              <Calendar className="w-4 h-4" />
+              Master Itinerary
+            </Link>
           </div>
         </div>
 
@@ -107,7 +120,9 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               start_date: trip.start_date,
               end_date: trip.end_date,
               budget_per_person: trip.budget_per_person,
-              member_count: trip.trip_members?.length || 1
+              member_count: trip.trip_members?.length || 1,
+              expenses: expenses || [],
+              members: trip.trip_members
             }} />
 
             {/* Distance Checker (Phase 5+) */}
@@ -117,6 +132,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
             <ExpenseLedger 
               tripId={id}
               expenses={expenses || []}
+              settlements={settlements || []}
               members={trip.trip_members}
               currentUserId={user?.id}
             />

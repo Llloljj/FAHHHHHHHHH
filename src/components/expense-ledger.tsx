@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { addExpense, deleteExpense } from '@/app/actions/expense-actions'
+import { addExpense, deleteExpense, settleDebt } from '@/app/actions/expense-actions'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -19,11 +19,12 @@ import {
 interface ExpenseLedgerProps {
   tripId: string
   expenses: any[]
+  settlements: any[]
   members: any[]
   currentUserId?: string
 }
 
-export function ExpenseLedger({ tripId, expenses, members, currentUserId }: ExpenseLedgerProps) {
+export function ExpenseLedger({ tripId, expenses, settlements, members, currentUserId }: ExpenseLedgerProps) {
   const [loading, setLoading] = useState(false)
 
   // Calculate balances
@@ -45,7 +46,45 @@ export function ExpenseLedger({ tripId, expenses, members, currentUserId }: Expe
     })
   })
 
+  // Adjust balances based on settlements
+  settlements.forEach(s => {
+    balances[s.from_id] += s.amount
+    balances[s.to_id] -= s.amount
+  })
+
   const currentUserBalance = currentUserId ? balances[currentUserId] || 0 : 0
+
+  // Settlement Engine: Calculate who owes whom
+  const suggestedSettlements: { from: string, to: string, amount: number }[] = []
+  const debtors = Object.entries(balances)
+    .filter(([_, bal]) => bal < -0.01)
+    .sort((a, b) => a[1] - b[1]) // Most negative first
+  const creditors = Object.entries(balances)
+    .filter(([_, bal]) => bal > 0.01)
+    .sort((a, b) => b[1] - a[1]) // Most positive first
+
+  let dIdx = 0
+  let cIdx = 0
+  const dList = [...debtors]
+  const cList = [...creditors]
+
+  while (dIdx < dList.length && cIdx < cList.length) {
+    const debtor = dList[dIdx]
+    const creditor = cList[cIdx]
+    const amount = Math.min(Math.abs(debtor[1]), creditor[1])
+
+    suggestedSettlements.push({
+      from: debtor[0],
+      to: creditor[0],
+      amount
+    })
+
+    debtor[1] += amount
+    creditor[1] -= amount
+
+    if (Math.abs(debtor[1]) < 0.01) dIdx++
+    if (Math.abs(creditor[1]) < 0.01) cIdx++
+  }
 
   const handleAddExpense = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -55,6 +94,17 @@ export function ExpenseLedger({ tripId, expenses, members, currentUserId }: Expe
     try {
       await addExpense(formData)
       e.currentTarget.reset()
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleSettle = async (fromId: string, toId: string, amount: number) => {
+    setLoading(true)
+    try {
+      await settleDebt(tripId, fromId, toId, amount)
     } catch (err) {
       console.error(err)
     } finally {
@@ -122,6 +172,41 @@ export function ExpenseLedger({ tripId, expenses, members, currentUserId }: Expe
           </CardContent>
         </Card>
       </div>
+
+      {/* Settlements View */}
+      {suggestedSettlements.length > 0 && (
+        <Card className="border-[#262626]/5 bg-[#fdf8f3] rounded-[24px]">
+          <CardHeader>
+            <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50">Suggested Settlements</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {suggestedSettlements.map((s, i) => (
+              <div key={i} className="flex items-center justify-between p-4 bg-white rounded-2xl border border-[#262626]/5 shadow-sm">
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-black uppercase text-[#262626]/40 mb-1">
+                    {s.from === currentUserId ? 'YOU OWE' : `User ${s.from.substring(0,4)} OWES`}
+                  </span>
+                  <span className="text-sm font-black text-[#262626] uppercase">
+                    {s.to === currentUserId ? 'YOU' : `User ${s.to.substring(0,4)}`}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <div className="text-lg font-black text-[#e4a4bd]">₹{s.amount.toFixed(0)}</div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    disabled={loading}
+                    onClick={() => handleSettle(s.from, s.to, s.amount)}
+                    className="h-6 text-[8px] font-black uppercase tracking-widest text-[#262626]/40 hover:text-[#e4a4bd]"
+                  >
+                    {loading ? '...' : 'Settle'}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Expense History */}
       <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden">

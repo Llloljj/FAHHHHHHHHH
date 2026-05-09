@@ -14,6 +14,7 @@ export async function createListing(formData: FormData) {
   const title = formData.get('title') as string
   const description = formData.get('description') as string
   const price_per_day = parseFloat(formData.get('price_per_day') as string)
+  const security_deposit_amount = parseFloat(formData.get('security_deposit_amount') as string) || 0
   const location = formData.get('location') as string
 
   if (!type || !title || isNaN(price_per_day)) {
@@ -28,6 +29,7 @@ export async function createListing(formData: FormData) {
       title,
       description,
       price_per_day,
+      security_deposit_amount,
       location,
       is_verified: true, // Simulating auto-verify for MVP
       images: [

@@ -80,3 +80,29 @@ export async function deleteExpense(expenseId: string, tripId: string) {
 
   revalidatePath(`/trips/${tripId}`)
 }
+
+export async function settleDebt(tripId: string, fromId: string, toId: string, amount: number) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user || (user.id !== fromId && user.id !== toId)) {
+    throw new Error('Not authorized')
+  }
+
+  const { error } = await supabase
+    .from('settlements')
+    .insert({
+      trip_id: tripId,
+      from_id: fromId,
+      to_id: toId,
+      amount,
+      status: 'confirmed' // For now, assume instant confirmation
+    })
+
+  if (error) {
+    console.error('Error creating settlement:', error)
+    throw new Error('Failed to record settlement')
+  }
+
+  revalidatePath(`/trips/${tripId}`)
+}

@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Compass, Calendar, Users } from 'lucide-react'
+import { EmptyState } from '@/components/empty-state'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -25,24 +26,23 @@ export default async function DashboardPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
           <div>
             <h1 className="text-6xl font-black uppercase tracking-tighter text-[#262626]">
-              Your <span className="text-[#e4a4bd]">Voyages</span>
+              Your <span className="text-[#e4a4bd]">Banjaras</span>
             </h1>
             <p className="text-xl text-[#262626]/70 mt-4 font-medium">Manage your upcoming and past group trips.</p>
           </div>
           <Link href="/trips/new" className="mt-8 md:mt-0 bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
-            + New Voyage
+            + New Banjara
           </Link>
         </div>
 
         {!trips || trips.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-24 bg-[#f5f0eb] rounded-[24px] border border-[#262626]/5">
-            <Compass className="w-24 h-24 text-[#e4a4bd] mb-8" />
-            <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-4">No trips planned yet</h3>
-            <p className="text-[#262626]/70 font-medium mb-8">It's time to start organizing your next great adventure.</p>
-            <Link href="/trips/new" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] border-b-2 border-[#e4a4bd] pb-2 hover:text-[#e4a4bd] transition-colors">
-              Create your first trip →
-            </Link>
-          </div>
+          <EmptyState 
+            icon={Compass}
+            title="No trips planned yet"
+            message="It's time to start organizing your next great adventure with your favorite group."
+            actionLabel="Create your first trip"
+            actionHref="/trips/new"
+          />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trips.map((trip: any) => (

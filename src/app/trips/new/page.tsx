@@ -111,7 +111,7 @@ export default function NewTripPage() {
               
               <div className="pt-4">
                 <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white hover:bg-[#e4a4bd] hover:text-[#262626] transition-super rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em]">
-                  {loading ? 'Initializing Voyage...' : 'Create Trip'}
+                  {loading ? 'Initializing Banjara...' : 'Create Trip'}
                 </Button>
               </div>
             </form>
