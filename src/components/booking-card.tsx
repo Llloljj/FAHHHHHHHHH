@@ -50,7 +50,7 @@ export function BookingCard({ booking, isHost }: BookingCardProps) {
         
         <div className="flex-1 p-8 flex flex-col justify-between">
           <div>
-            <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC] mb-2">
+            <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] accent-gradient-text mb-2">
               <MapPin className="w-3 h-3 mr-1" />
               {booking.listings.location}
             </div>
@@ -88,7 +88,7 @@ export function BookingCard({ booking, isHost }: BookingCardProps) {
                     await updateBookingStatus(booking.id, 'confirmed')
                     setLoading(false)
                   }}
-                  className="px-6 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.15em] bg-[#262626] text-white hover:bg-[#3B9ECC] hover:text-[#262626] transition-all disabled:opacity-50"
+                  className="px-6 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.15em] bg-[#262626] text-white hover:accent-gradient hover:text-[#262626] transition-all disabled:opacity-50"
                 >
                   {loading ? '...' : 'Approve'}
                 </button>

@@ -31,12 +31,12 @@ export default function NewTripPage() {
   return (
     <div className="flex min-h-screen pt-24 px-4 bg-background pb-24">
       <RevealUp className="w-full max-w-2xl mx-auto">
-        <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] hover:text-[#262626] transition-colors mb-8 inline-block">
+        <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black accent-gradient-text hover:text-[#262626] transition-colors mb-8 inline-block">
           ← Back to Dashboard
         </Link>
 
         <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#262626] mb-8">
-          Craft Your <span className="text-[#3B9ECC]">Journey</span>
+          Craft Your <span className="accent-gradient-text">Journey</span>
         </h1>
 
         <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px]">
@@ -91,8 +91,37 @@ export default function NewTripPage() {
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="group_size" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Number of People</label>
+                  <Input
+                    id="group_size"
+                    name="group_size"
+                    type="number"
+                    min="1"
+                    placeholder="E.g., 4"
+                    required
+                    className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="spending_power" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Spending Power</label>
+                  <select
+                    id="spending_power"
+                    name="spending_power"
+                    required
+                    className="flex h-10 w-full rounded-full border border-[#262626]/20 bg-background px-6 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B9ECC] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    style={{ height: '50px' }}
+                  >
+                    <option value="budget">Budget Friendly</option>
+                    <option value="standard" selected>Standard</option>
+                    <option value="luxury">Luxury / Premium</option>
+                  </select>
+                </div>
+              </div>
+
               <div className="space-y-2">
-                <label htmlFor="budget_per_person" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Budget Per Person (Activity/Local Only)</label>
+                <label htmlFor="budget_per_person" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Max Budget Per Person</label>
                 <div className="relative">
                   <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#262626]/50 font-bold">₹</span>
                   <Input
@@ -108,10 +137,20 @@ export default function NewTripPage() {
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <label htmlFor="vendor_requirements" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Special Vendor Requirements</label>
+                <textarea
+                  id="vendor_requirements"
+                  name="vendor_requirements"
+                  placeholder="E.g., renting a 3BHK house, need home cooked meals, wheelchair accessible car..."
+                  className="flex min-h-[80px] w-full rounded-2xl border border-[#262626]/20 bg-background px-6 py-4 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B9ECC] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+
               {error && <div className="text-sm text-destructive font-medium p-4 bg-destructive/10 rounded-[12px]">{error}</div>}
 
               <div className="pt-4">
-                <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white hover:bg-[#3B9ECC] hover:text-[#262626] transition-super rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em]">
+                <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white hover:accent-gradient hover:text-[#262626] transition-super rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em]">
                   {loading ? 'Initializing BANJARE...' : 'Create Trip'}
                 </Button>
               </div>

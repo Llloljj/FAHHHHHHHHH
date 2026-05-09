@@ -41,6 +41,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
     .eq('trip_id', id)
     .order('date', { ascending: false })
 
+
   // Fetch settlements
   const { data: settlements } = await supabase
     .from('settlements')
@@ -56,12 +57,12 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
         {/* Header */}
         <RevealUp>
           <div className="mb-16">
-            <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] hover:text-[#262626] transition-colors mb-8 inline-block">
+            <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black accent-gradient-text hover:text-[#262626] transition-colors mb-8 inline-block">
               ← Back to Dashboard
             </Link>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-4 gap-8">
               <div>
-                <div className="text-[10px] text-[#3B9ECC] font-black uppercase tracking-[0.2em] mb-4 flex items-center">
+                <div className="text-[10px] accent-gradient-text font-black uppercase tracking-[0.2em] mb-4 flex items-center">
                   <MapPin className="w-3 h-3 mr-2" />
                   {trip.destination}
                 </div>
@@ -71,7 +72,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               </div>
               <Link 
                 href={`/trips/${id}/itinerary`}
-                className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all flex items-center gap-2 shadow-xl"
+                className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:accent-gradient hover:text-[#262626] transition-all flex items-center gap-2 shadow-xl"
               >
                 <Calendar className="w-4 h-4" />
                 Master Itinerary
@@ -90,28 +91,28 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
                   <CardContent className="p-6">
-                    <Calendar className="w-6 h-6 text-[#3B9ECC] mb-4" />
+                    <Calendar className="w-6 h-6 accent-gradient-text mb-4" />
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Start Date</div>
                     <div className="text-xl font-bold text-[#262626]">{new Date(trip.start_date).toLocaleDateString()}</div>
                   </CardContent>
                 </Card>
                 <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
                   <CardContent className="p-6">
-                    <Calendar className="w-6 h-6 text-[#3B9ECC] mb-4" />
+                    <Calendar className="w-6 h-6 accent-gradient-text mb-4" />
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">End Date</div>
                     <div className="text-xl font-bold text-[#262626]">{new Date(trip.end_date).toLocaleDateString()}</div>
                   </CardContent>
                 </Card>
                 <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
                   <CardContent className="p-6">
-                    <DollarSign className="w-6 h-6 text-[#3B9ECC] mb-4" />
+                    <DollarSign className="w-6 h-6 accent-gradient-text mb-4" />
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Per Person</div>
                     <div className="text-xl font-bold text-[#262626]">₹{trip.budget_per_person}</div>
                   </CardContent>
                 </Card>
                 <Card className="border-[#262626]/10 shadow-sm bg-[#f5f0eb] border-0 rounded-[16px]">
                   <CardContent className="p-6">
-                    <Users className="w-6 h-6 text-[#3B9ECC] mb-4" />
+                    <Users className="w-6 h-6 accent-gradient-text mb-4" />
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/50 mb-1">Members</div>
                     <div className="text-xl font-bold text-[#262626]">{trip.trip_members?.length || 0}</div>
                   </CardContent>
@@ -148,7 +149,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
                   {trip.trip_members?.map((member: any) => (
                     <div key={member.id} className="flex items-center justify-between p-3 bg-background rounded-xl border border-[#262626]/5">
                       <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-[#f5f0eb] flex items-center justify-center text-[10px] font-black text-[#3B9ECC]">
+                        <div className="w-8 h-8 rounded-full bg-[#f5f0eb] flex items-center justify-center text-[10px] font-black accent-gradient-text">
                           {member.user_id === user?.id ? 'YOU' : member.role === 'admin' ? 'A' : 'M'}
                         </div>
                         <span className="ml-3 text-sm font-bold text-[#262626]">

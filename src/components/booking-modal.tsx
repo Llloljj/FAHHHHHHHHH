@@ -41,25 +41,61 @@ export function BookingModal({ listing, children }: BookingModalProps) {
     if (!date?.from || !date?.to) return
     setLoading(true)
 
-    // Simulating a brief "payment" delay
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
     try {
+      // 1. Create Order via Server Action
       const order = await createBookingOrder(listing.id, total)
 
-      await confirmBooking({
-        listingId: listing.id,
-        startDate: format(date.from, 'yyyy-MM-dd'),
-        endDate: format(date.to, 'yyyy-MM-dd'),
-        totalPrice: total,
-        razorpayOrderId: order.orderId,
-        razorpayPaymentId: `mock_pay_${Math.random().toString(36).substring(7)}`
-      })
+      // 2. Initialize Razorpay Checkout
+      const options = {
+        key: order.key,
+        amount: order.amount,
+        currency: "INR",
+        name: "BANJARE",
+        description: `Booking for ${listing.title}`,
+        order_id: order.orderId,
+        handler: async function (response: any) {
+          try {
+            // 3. Confirm Booking in Database
+            await confirmBooking({
+              listingId: listing.id,
+              startDate: format(date!.from, 'yyyy-MM-dd'),
+              endDate: format(date!.to, 'yyyy-MM-dd'),
+              totalPrice: total,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id
+            })
+            setIsSuccess(true)
+          } catch (err) {
+            console.error("Booking confirmation failed:", err)
+            alert("Payment successful but booking confirmation failed. Please contact support.")
+          } finally {
+            setLoading(false)
+          }
+        },
+        prefill: {
+          name: "Guest", // Could be dynamically loaded from user profile
+          email: "guest@example.com",
+        },
+        theme: {
+          color: "#3B9ECC"
+        },
+        modal: {
+          ondismiss: function() {
+            setLoading(false)
+          }
+        }
+      };
 
-      setIsSuccess(true)
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on('payment.failed', function (response: any) {
+        alert(`Payment failed: ${response.error.description}`);
+        setLoading(false)
+      });
+      rzp.open();
+
     } catch (err) {
       console.error(err)
-    } finally {
+      alert("Failed to initialize payment. Please try again.")
       setLoading(false)
     }
   }
@@ -115,19 +151,19 @@ export function BookingModal({ listing, children }: BookingModalProps) {
                     <span>{days}</span>
                   </div>
                   {listing.security_deposit_amount && listing.security_deposit_amount > 0 && (
-                    <div className="flex justify-between items-center text-sm font-medium text-[#3B9ECC]">
+                    <div className="flex justify-between items-center text-sm font-medium accent-gradient-text">
                       <span className="opacity-60">Security Deposit</span>
                       <span>₹{listing.security_deposit_amount}</span>
                     </div>
                   )}
                   <div className="pt-4 border-t border-white/10 flex justify-between items-center">
                     <span className="text-lg font-black uppercase tracking-tighter">Total Amount</span>
-                    <span className="text-2xl font-black text-[#3B9ECC]">₹{total + (listing.security_deposit_amount || 0)}</span>
+                    <span className="text-2xl font-black accent-gradient-text">₹{total + (listing.security_deposit_amount || 0)}</span>
                   </div>
                 </div>
 
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10 space-y-3">
-                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#3B9ECC]">
+                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest accent-gradient-text">
                     <ShieldCheck className="w-4 h-4" />
                     Secure Booking
                   </div>
@@ -140,7 +176,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
               <Button
                 disabled={loading || !date?.from || !date?.to}
                 onClick={handleBooking}
-                className="w-full bg-[#3B9ECC] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
+                className="w-full accent-gradient text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
               >
                 {loading ? 'Processing...' : (
                   <span className="flex items-center gap-2">

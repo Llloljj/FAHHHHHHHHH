@@ -24,7 +24,7 @@ export function SuccessState({ title, message, actionLabel, actionHref }: Succes
         {message}
       </p>
       <Link href={actionHref}>
-        <Button className="bg-[#262626] text-white rounded-full px-12 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super group">
+        <Button className="bg-[#262626] text-white rounded-full px-12 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:accent-gradient hover:text-[#262626] transition-super group">
           {actionLabel}
           <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-2 transition-transform" />
         </Button>

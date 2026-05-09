@@ -4,23 +4,21 @@ import { useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 /**
- * Silently creates an anonymous Supabase session for guest users.
- * This runs once on mount — no login screen needed.
+ * GuestSession is now disabled as per user request to remove anonymous sign-ins.
+ * It will just check if a session exists but won't force one.
  */
 export function GuestSession() {
   useEffect(() => {
     const supabase = createClient()
     
-    const initSession = async () => {
+    const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
-      
-      // If no session exists at all, sign in anonymously
-      if (!session) {
-        await supabase.auth.signInAnonymously()
+      if (session) {
+        console.log('Active session found:', session.user.email)
       }
     }
     
-    initSession()
+    checkSession()
   }, [])
 
   return null
