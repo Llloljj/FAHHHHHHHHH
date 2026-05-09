@@ -133,10 +133,10 @@ export default function Home() {
           {SERVICES.map((service, i) => (
             <RevealUp key={i}>
               <div
-                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-super cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
+                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-all duration-500 cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
                 style={{ minHeight: '320px' }}
               >
-                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-super mb-10 leading-none">
+                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-all duration-500 mb-10 leading-none">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-5">
