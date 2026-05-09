@@ -61,7 +61,9 @@ export default function HostApplyPage() {
 
     // Prepare details based on service type
     const details: any = {
-      image_url: imageUrl
+      image_url: imageUrl,
+      city: formValues.city,
+      address: formValues.address
     }
 
     if (serviceType === 'home') {
@@ -170,8 +172,20 @@ export default function HostApplyPage() {
                 <Input id="id_proof_number" name="id_proof_number" placeholder="Enter card number" required className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]" />
               </div>
 
+              {/* Location Info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#262626]/5 pt-6">
+                <div className="space-y-2">
+                  <label htmlFor="city" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">City</label>
+                  <Input id="city" name="city" placeholder="E.g., Nagpur, Mumbai" required className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="address" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Full Address</label>
+                  <Input id="address" name="address" placeholder="Enter full address" required className="rounded-full px-6 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC]" />
+                </div>
+              </div>
+
               {/* Service Type */}
-              <div className="space-y-2">
+              <div className="space-y-2 border-t border-[#262626]/5 pt-6">
                 <label htmlFor="service_type" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Service Type</label>
                 <select
                   id="service_type"
@@ -289,7 +303,7 @@ export default function HostApplyPage() {
 
               {/* Image Upload */}
               <div className="space-y-2 border-t border-[#262626]/5 pt-6">
-                <label htmlFor="listing_image" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Upload Image (Home, Vehicle, or Food)</label>
+                <label htmlFor="listing_image" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]">Upload Service Image (Home, Vehicle, Food, or Building)</label>
                 <Input id="listing_image" name="listing_image" type="file" accept="image/*" className="rounded-full px-6 py-2 border-[#262626]/20 focus-visible:ring-[#3B9ECC]" />
               </div>
 

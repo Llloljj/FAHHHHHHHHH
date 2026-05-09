@@ -145,10 +145,27 @@ export default function Home() {
                 <p className="text-sm text-[#262626]/60 group-hover:text-[#262626]/80 leading-relaxed font-medium">
                   {service.desc}
                 </p>
-                <div className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                  <span className="label-utility text-[#262626]/70">Explore</span>
-                  <span className="text-[#262626]">→</span>
-                </div>
+                {service.title === "P2P MARKETPLACE" ? (
+                  <Link href="/marketplace" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
+                    <span className="label-utility text-[#262626]/70">Explore Marketplace</span>
+                    <span className="text-[#262626]">→</span>
+                  </Link>
+                ) : service.title === "SMART SPLITS" ? (
+                  <Link href="/smart-splits" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
+                    <span className="label-utility text-[#262626]/70">Go to Ledger</span>
+                    <span className="text-[#262626]">→</span>
+                  </Link>
+                ) : service.title === "AI ITINERARIES" ? (
+                  <Link href="/travel-hub" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
+                    <span className="label-utility text-[#262626]/70">Book Travel</span>
+                    <span className="text-[#262626]">→</span>
+                  </Link>
+                ) : (
+                  <Link href="/dashboard" className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
+                    <span className="label-utility text-[#262626]/70">Explore</span>
+                    <span className="text-[#262626]">→</span>
+                  </Link>
+                )}
               </div>
             </RevealUp>
           ))}

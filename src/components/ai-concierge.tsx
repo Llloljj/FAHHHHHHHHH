@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useChat } from '@ai-sdk/react'
 import { TextStreamChatTransport } from 'ai'
 import { AI_MODES, AiMode } from '@/lib/ai/prompts'
@@ -8,15 +8,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Bot, Map, Activity, PieChart, Vote, Send } from 'lucide-react'
-
-const RupeeIcon = (props: any) => (
-  <span {...props} className={props.className + " font-black flex items-center justify-center"}>₹</span>
-)
+import { Bot, Map, DollarSign, Activity, PieChart, Vote, Send } from 'lucide-react'
 
 const MODE_CONFIG = [
   { id: AI_MODES.ITINERARY, icon: Map, label: 'Itinerary' },
-  { id: AI_MODES.BUDGET, icon: RupeeIcon, label: 'Budget' },
+  { id: AI_MODES.BUDGET, icon: DollarSign, label: 'Budget' },
   { id: AI_MODES.ACTIVITY, icon: Activity, label: 'Activity' },
   { id: AI_MODES.LEDGER, icon: PieChart, label: 'Ledger' },
   { id: AI_MODES.VOTING, icon: Vote, label: 'Voting' },
@@ -28,8 +24,6 @@ type TripContext = {
   end_date: string
   budget_per_person: number
   member_count: number
-  expenses?: any[]
-  members?: any[]
 }
 
 export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
@@ -39,14 +33,22 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
   const contextParam = encodeURIComponent(JSON.stringify(tripContext))
   const apiUrl = `/api/chat?mode=${activeMode}&ctx=${contextParam}`
 
+  console.log('AI Concierge rendering with apiUrl:', apiUrl)
+
   const { messages, sendMessage, status } = useChat({
     transport: new TextStreamChatTransport({ api: apiUrl }),
   })
+
+  useEffect(() => {
+    console.log('AI Concierge messages updated:', messages)
+    console.log('AI Concierge status updated:', status)
+  }, [messages, status])
 
   const isLoading = status === 'streaming' || status === 'submitted'
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    console.log('AI Concierge submitting input:', input)
     if (!input.trim() || isLoading) return
     sendMessage({ text: input })
     setInput('')
@@ -56,7 +58,7 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
     <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden flex flex-col h-[600px]">
       <CardHeader className="bg-[#262626] text-white p-6 pb-4 shrink-0">
         <CardTitle className="text-2xl font-black uppercase tracking-tighter flex items-center">
-          <Bot className="w-6 h-6 mr-3 text-[#3B9ECC]" />
+          <Bot className="w-6 h-6 mr-3 text-[#e4a4bd]" />
           AI Concierge
         </CardTitle>
         <div className="flex gap-2 mt-4 overflow-x-auto pb-1">
@@ -69,7 +71,7 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
                 onClick={() => setActiveMode(mode.id as AiMode)}
                 className={`flex items-center px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] transition-all whitespace-nowrap ${
                   isActive
-                    ? 'bg-[#3B9ECC] text-[#262626]'
+                    ? 'bg-[#e4a4bd] text-[#262626]'
                     : 'bg-white/10 text-white/70 hover:bg-white/20'
                 }`}
               >
@@ -92,7 +94,7 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
             </div>
           ) : (
             <div className="space-y-6">
-              {messages.map((m) => {
+              {messages.map((m: any) => {
                 const text = m.parts?.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('') ?? ''
                 return (
                   <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -123,12 +125,12 @@ export function AiConcierge({ tripContext }: { tripContext: TripContext }) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={`Ask the ${activeMode} assistant...`}
-              className="w-full rounded-full bg-[#f5f0eb] border-0 px-6 py-6 pr-14 focus-visible:ring-[#3B9ECC] text-sm"
+              className="w-full rounded-full bg-[#f5f0eb] border-0 px-6 py-6 pr-14 focus-visible:ring-[#e4a4bd] text-sm"
             />
             <Button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 p-0 bg-[#262626] text-[#3B9ECC] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 p-0 bg-[#262626] text-[#e4a4bd] hover:bg-[#e4a4bd] hover:text-[#262626] transition-all"
             >
               <Send className="w-4 h-4" />
             </Button>

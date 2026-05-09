@@ -145,9 +145,7 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
               start_date: trip.start_date,
               end_date: trip.end_date,
               budget_per_person: trip.budget_per_person,
-              member_count: trip.trip_members?.length || 1,
-              expenses: expenses || [],
-              members: trip.trip_members
+              member_count: trip.trip_members?.length || 1
             }} />
 
             {/* Distance Checker (Phase 5+) */}

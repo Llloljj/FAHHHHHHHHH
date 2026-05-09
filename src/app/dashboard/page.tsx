@@ -40,9 +40,17 @@ export default async function DashboardPage() {
             </h1>
             <p className="text-xl text-[#262626]/70 mt-4 font-medium">Manage your upcoming and past group trips.</p>
           </div>
-          <Link href="/trips/new" className="mt-8 md:mt-0 bg-[#3B9ECC] text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
-            + New BANJARE
-          </Link>
+          <div className="flex gap-4 mt-8 md:mt-0">
+            <Link href="/travel-hub" className="bg-white border border-[#262626]/10 text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#f5f0eb] transition-colors">
+              Travel Hub
+            </Link>
+            <Link href="/marketplace" className="bg-[#262626] text-white rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
+              Marketplace
+            </Link>
+            <Link href="/trips/new" className="bg-[#3B9ECC] text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
+              + New BANJARE
+            </Link>
+          </div>
         </div>
 
         {!trips || trips.length === 0 ? (
