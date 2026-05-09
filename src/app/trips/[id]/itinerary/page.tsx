@@ -112,7 +112,6 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
         <RevealUp delay={300}>
           {allItems.length === 0 ? (
             <EmptyState 
-              icon={Calendar}
               title="Empty Timeline"
               message="Start adding activities or book through the marketplace to populate your trip itinerary."
               actionLabel="Explore Marketplace"

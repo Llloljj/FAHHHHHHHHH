@@ -37,7 +37,6 @@ export default async function DashboardPage() {
 
         {!trips || trips.length === 0 ? (
           <EmptyState
-            icon={Compass}
             title="No trips planned yet"
             message="It's time to start organizing your next great adventure with your favorite group."
             actionLabel="Create your first trip"

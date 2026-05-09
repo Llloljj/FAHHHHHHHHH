@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Calendar, MapPin, DollarSign, Users } from 'lucide-react'
 import { AiConcierge } from '@/components/ai-concierge'
-import { ExpenseLedger } from '@/components/expense-ledger'
+import { SmartSplits } from '@/components/smart-splits'
 import { DistanceChecker } from '@/components/distance-checker'
 import { RevealUp } from '@/components/reveal-up'
 
@@ -133,14 +133,8 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
             {/* Distance Checker (Phase 5+) */}
             <DistanceChecker />
 
-            {/* Expense Ledger (Phase 4) */}
-            <ExpenseLedger 
-              tripId={id}
-              expenses={expenses || []}
-              settlements={settlements || []}
-              members={trip.trip_members}
-              currentUserId={user?.id}
-            />
+            {/* Smart Splits (Phase 4) */}
+            <SmartSplits />
 
           </div>
 
