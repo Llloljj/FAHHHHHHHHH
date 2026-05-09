@@ -68,11 +68,16 @@ export async function createTrip(formData: FormData) {
   }
 
   if (user) {
-    await adminAuthClient.from('trip_members').insert({
+    const { error: memberError } = await adminAuthClient.from('trip_members').insert({
       trip_id: tripId,
       user_id: user.id,
       role: 'admin'
     })
+    
+    if (memberError) {
+      console.error('Error adding user to trip_members:', memberError)
+      throw new Error(`Failed to link user to trip: ${memberError.message}`)
+    }
   }
 
   redirect(`/trips/${tripId}`)

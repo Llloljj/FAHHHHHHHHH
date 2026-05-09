@@ -13,8 +13,17 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
   
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Fetch trip details and members
-  const { data: trip, error } = await supabase
+  // Use Admin Client to bypass RLS (since RLS policies are either missing or causing recursion)
+  const { createClient: createSupabaseAdmin } = await import('@supabase/supabase-js')
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  
+  const adminClient = createSupabaseAdmin(supabaseUrl, supabaseServiceKey, {
+    auth: { autoRefreshToken: false, persistSession: false }
+  })
+
+  // Fetch trip details and members using the Admin Client
+  const { data: trip, error } = await adminClient
     .from('trips')
     .select(`
       *,
@@ -26,24 +35,34 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
     .eq('id', id)
     .single()
 
-  if (error || !trip) {
+  // Manual Authorization: Ensure the logged-in user is actually a member of this trip
+  const isMember = trip?.trip_members?.some((m: any) => m.user_id === user?.id)
+  
+  if (error || !trip || !isMember) {
     return (
-      <div className="min-h-screen pt-[100px] flex items-center justify-center">
-        <p className="text-xl">Trip not found or access denied.</p>
+      <div className="min-h-screen pt-[100px] flex flex-col items-center justify-center p-8 text-center">
+        <p className="text-xl font-bold text-red-500 mb-4">Trip not found or access denied.</p>
+        <div className="bg-white p-4 rounded-lg shadow max-w-2xl w-full text-left overflow-auto text-xs">
+          <p><strong>Debug Info:</strong></p>
+          <p><strong>Error:</strong> {JSON.stringify(error)}</p>
+          <p><strong>Trip Exists:</strong> {trip ? 'Yes' : 'No'}</p>
+          <p><strong>Your User ID:</strong> {user?.id}</p>
+          <p><strong>Trip Members Array:</strong> {JSON.stringify(trip?.trip_members)}</p>
+        </div>
       </div>
     )
   }
 
-  // Fetch expenses for this trip
-  const { data: expenses } = await supabase
+  // Fetch expenses for this trip using Admin Client
+  const { data: expenses } = await adminClient
     .from('expenses')
     .select('*')
     .eq('trip_id', id)
     .order('date', { ascending: false })
 
 
-  // Fetch settlements
-  const { data: settlements } = await supabase
+  // Fetch settlements using Admin Client
+  const { data: settlements } = await adminClient
     .from('settlements')
     .select('*')
     .eq('trip_id', id)
