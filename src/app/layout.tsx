@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const leagueSpartan = League_Spartan({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
-  title: "Voyage",
-  description: "Collaborative Group Travel App",
+  title: "Voyage | Super Travel",
+  description: "A luxury-focused, collaborative group travel app",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <body className={`${leagueSpartan.className} min-h-screen flex flex-col antialiased bg-background text-foreground`}>
         <Navbar />
         <main className="flex-1">{children}</main>
       </body>

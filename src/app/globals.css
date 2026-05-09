@@ -46,41 +46,52 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-bounce-slow: bounce-slow 4s ease-in-out infinite;
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(-5%);
+    }
+    50% {
+      transform: translateY(5%);
+    }
+  }
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #fdf8f3;
+  --foreground: #262626;
+  --card: #f5f0eb;
+  --card-foreground: #262626;
+  --popover: #fdf8f3;
+  --popover-foreground: #262626;
+  --primary: #e4a4bd;
+  --primary-foreground: #262626;
+  --secondary: #f5f0eb;
+  --secondary-foreground: #262626;
+  --muted: #f5f0eb;
+  --muted-foreground: #e4a4bd;
+  --accent: #e4a4bd;
+  --accent-foreground: #262626;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #e4a4bd;
+  --input: #e4a4bd;
+  --ring: #e4a4bd;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 24px;
+  --sidebar: #fdf8f3;
+  --sidebar-foreground: #262626;
+  --sidebar-primary: #e4a4bd;
+  --sidebar-primary-foreground: #262626;
+  --sidebar-accent: #f5f0eb;
+  --sidebar-accent-foreground: #262626;
+  --sidebar-border: #e4a4bd;
+  --sidebar-ring: #e4a4bd;
 }
 
 .dark {
@@ -127,4 +138,19 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Custom Utilities for Super Travel */
+.transition-super {
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up-start {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-up-active {
+  opacity: 1;
+  transform: translateY(0);
 }

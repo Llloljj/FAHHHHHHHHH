@@ -1,38 +1,50 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { Button } from '@/components/ui/button'
-import { Compass, LogOut, User } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 
 export async function Navbar() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   return (
-    <nav className="border-b bg-background">
-      <div className="flex h-16 items-center px-4 max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
-          <Compass className="h-6 w-6 text-primary" />
-          <span>Voyage</span>
+    <nav className="fixed top-0 left-0 right-0 h-[80px] z-50 bg-[#fdf8f3]/80 backdrop-blur-[12px] border-b border-[#262626]/5 transition-super">
+      <div className="flex h-full items-center justify-between px-8 md:px-16 mx-auto">
+        {/* Left: Brand */}
+        <Link href="/" className="font-black text-2xl tracking-tighter uppercase text-[#262626]">
+          VOYAGE
         </Link>
-        <div className="ml-auto flex items-center space-x-4">
+        
+        {/* Center: Menu */}
+        <div className="hidden md:flex items-center space-x-12">
+          <Link href="/destinations" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+            Destinations
+          </Link>
+          <Link href="/experiences" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+            Experiences
+          </Link>
+          <Link href="/concierge" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+            Concierge
+          </Link>
+        </div>
+
+        {/* Right: CTA / Auth */}
+        <div className="flex items-center space-x-4">
           {user ? (
-            <>
-              <Link href="/dashboard">
-                <Button variant="ghost">Dashboard</Button>
+            <div className="flex items-center gap-4">
+              <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+                Dashboard
               </Link>
               <form action="/api/auth/signout" method="POST">
-                <Button variant="outline" size="sm" type="submit">
-                  <LogOut className="h-4 w-4 mr-2" />
+                <button type="submit" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity flex items-center">
+                  <LogOut className="h-3 w-3 mr-2" />
                   Sign Out
-                </Button>
+                </button>
               </form>
-            </>
+            </div>
           ) : (
-            <Link href="/login">
-              <Button size="sm">
-                <User className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
+            <Link href="/login" className="bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[12px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity flex items-center">
+              <User className="h-3 w-3 mr-2" />
+              Sign In
             </Link>
           )}
         </div>
