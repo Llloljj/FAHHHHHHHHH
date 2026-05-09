@@ -47,7 +47,7 @@ export function DistanceChecker() {
     <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden bg-white">
       <CardHeader className="p-8 border-b border-[#262626]/5 flex flex-row items-center justify-between">
         <CardTitle className="text-xl font-black uppercase tracking-tighter flex items-center gap-3 text-[#262626]">
-          <Navigation className="w-5 h-5 text-[#e4a4bd]" />
+          <Navigation className="w-5 h-5 text-[#3B9ECC]" />
           Route Planner (Free)
         </CardTitle>
       </CardHeader>
@@ -72,7 +72,7 @@ export function DistanceChecker() {
         <Button 
           onClick={calculateDistance} 
           disabled={loading || !origin || !dest}
-          className="w-full bg-[#262626] text-white rounded-full py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super"
+          className="w-full bg-[#262626] text-white rounded-full py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super"
         >
           {loading ? 'Calculating Route...' : 'Get Distance & Time'}
         </Button>

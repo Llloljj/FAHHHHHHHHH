@@ -12,10 +12,10 @@ export default async function DashboardPage() {
   // Fetch trips for this guest/user
   const tripsQuery = user
     ? supabase
-        .from('trips')
-        .select(`id, title, destination, start_date, end_date, trip_members!inner(user_id)`)
-        .eq('trip_members.user_id', user.id)
-        .order('start_date', { ascending: true })
+      .from('trips')
+      .select(`id, title, destination, start_date, end_date, trip_members!inner(user_id)`)
+      .eq('trip_members.user_id', user.id)
+      .order('start_date', { ascending: true })
     : { data: [], error: null }
 
   const { data: trips, error } = await (user ? tripsQuery as any : Promise.resolve({ data: [], error: null }))
@@ -26,17 +26,17 @@ export default async function DashboardPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
           <div>
             <h1 className="text-6xl font-black uppercase tracking-tighter text-[#262626]">
-              Your <span className="text-[#e4a4bd]">Banjaras</span>
+              Your <span className="text-[#3B9ECC]">BANJAREs</span>
             </h1>
             <p className="text-xl text-[#262626]/70 mt-4 font-medium">Manage your upcoming and past group trips.</p>
           </div>
-          <Link href="/trips/new" className="mt-8 md:mt-0 bg-[#e4a4bd] text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
-            + New Banjara
+          <Link href="/trips/new" className="mt-8 md:mt-0 bg-[#3B9ECC] text-[#262626] rounded-full px-[32px] py-[16px] text-[10px] uppercase tracking-[0.2em] font-black hover:opacity-80 transition-opacity">
+            + New BANJARE
           </Link>
         </div>
 
         {!trips || trips.length === 0 ? (
-          <EmptyState 
+          <EmptyState
             icon={Compass}
             title="No trips planned yet"
             message="It's time to start organizing your next great adventure with your favorite group."
@@ -49,7 +49,7 @@ export default async function DashboardPage() {
               <Link key={trip.id} href={`/trips/${trip.id}`}>
                 <Card className="h-full hover:-translate-y-2 transition-super cursor-pointer border-[#262626]/10 rounded-[24px] overflow-hidden group">
                   <div className="h-48 bg-[#f5f0eb] relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[#262626]/5 group-hover:bg-[#e4a4bd]/20 transition-colors z-10" />
+                    <div className="absolute inset-0 bg-[#262626]/5 group-hover:bg-[#3B9ECC]/20 transition-colors z-10" />
                     <div className="absolute bottom-4 left-4 z-20">
                       <span className="bg-white/90 backdrop-blur-sm text-[#262626] text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-sm">
                         {trip.destination}
@@ -57,16 +57,16 @@ export default async function DashboardPage() {
                     </div>
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-4 group-hover:text-[#e4a4bd] transition-colors">
+                    <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-4 group-hover:text-[#3B9ECC] transition-colors">
                       {trip.title}
                     </h3>
                     <div className="flex flex-col space-y-3 text-sm text-[#262626]/70 font-medium">
                       <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-3 text-[#e4a4bd]" />
+                        <Calendar className="w-4 h-4 mr-3 text-[#3B9ECC]" />
                         {new Date(trip.start_date).toLocaleDateString()} - {new Date(trip.end_date).toLocaleDateString()}
                       </div>
                       <div className="flex items-center">
-                        <Users className="w-4 h-4 mr-3 text-[#e4a4bd]" />
+                        <Users className="w-4 h-4 mr-3 text-[#3B9ECC]" />
                         {trip.trip_members?.length ?? 1} Explorer(s)
                       </div>
                     </div>

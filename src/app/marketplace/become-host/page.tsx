@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { 
-  ShieldCheck, 
-  UploadCloud, 
-  User, 
-  FileText, 
+import {
+  ShieldCheck,
+  UploadCloud,
+  User,
+  FileText,
   CheckCircle2,
   ChevronRight,
   ArrowLeft
@@ -50,7 +50,7 @@ export default function BecomeHostPage() {
           <p className="text-[#262626]/60 font-medium">
             Your host profile is being verified. You can now start creating listings in the marketplace.
           </p>
-          <Link href="/marketplace" className="inline-block bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super">
+          <Link href="/marketplace" className="inline-block bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
             Go to Marketplace
           </Link>
         </div>
@@ -61,13 +61,13 @@ export default function BecomeHostPage() {
   return (
     <div className="min-h-screen pt-[100px] px-8 md:px-16 bg-[#fdf8f3] pb-24">
       <div className="max-w-3xl mx-auto">
-        <Link href="/marketplace" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#e4a4bd] hover:text-[#262626] transition-colors mb-12 inline-block">
+        <Link href="/marketplace" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] hover:text-[#262626] transition-colors mb-12 inline-block">
           ← Back to Marketplace
         </Link>
 
         <div className="mb-12 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-[#262626] leading-[0.85]">
-            BECOME A <br /> <span className="text-[#e4a4bd]">BANJARA HOST</span>
+            BECOME A <br /> <span className="text-[#3B9ECC]">BANJARE HOST</span>
           </h1>
           <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-xl">
             Join our exclusive community of local experts and property owners. Verify your identity to start hosting.
@@ -77,9 +77,9 @@ export default function BecomeHostPage() {
         {/* Progress Bar */}
         <div className="flex gap-2 mb-12">
           {[1, 2, 3].map((s) => (
-            <div 
-              key={s} 
-              className={`h-1 flex-1 rounded-full transition-all duration-500 ${s <= step ? 'bg-[#e4a4bd]' : 'bg-[#262626]/5'}`}
+            <div
+              key={s}
+              className={`h-1 flex-1 rounded-full transition-all duration-500 ${s <= step ? 'bg-[#3B9ECC]' : 'bg-[#262626]/5'}`}
             />
           ))}
         </div>
@@ -87,7 +87,7 @@ export default function BecomeHostPage() {
         <form onSubmit={handleSubmit} className="space-y-8">
           {step === 1 && (
             <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-              <div className="flex items-center gap-3 text-[#e4a4bd] mb-2">
+              <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <User className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 1: Personal Details</span>
               </div>
@@ -105,7 +105,7 @@ export default function BecomeHostPage() {
                 <label className="text-[10px] font-black uppercase tracking-widest text-[#262626]/40 ml-4">Bio / About You</label>
                 <Textarea name="bio" placeholder="Tell us about your hosting experience..." className="rounded-[24px] bg-white border-0 p-6 min-h-[120px]" />
               </div>
-              <Button type="button" onClick={handleNext} className="w-full md:w-auto bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-all flex items-center gap-2">
+              <Button type="button" onClick={handleNext} className="w-full md:w-auto bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all flex items-center gap-2">
                 Continue <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
@@ -113,12 +113,12 @@ export default function BecomeHostPage() {
 
           {step === 2 && (
             <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-              <div className="flex items-center gap-3 text-[#e4a4bd] mb-2">
+              <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <ShieldCheck className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 2: Identity Verification</span>
               </div>
               <Card className="border-dashed border-2 border-[#262626]/10 bg-white/50 rounded-[32px] p-12 text-center">
-                <UploadCloud className="w-12 h-12 text-[#e4a4bd] mx-auto mb-4" />
+                <UploadCloud className="w-12 h-12 text-[#3B9ECC] mx-auto mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tighter text-[#262626]">Upload Govt. ID</h3>
                 <p className="text-sm text-[#262626]/40 font-medium mt-2 mb-8">
                   Aadhaar, PAN, or Passport (Max 5MB)
@@ -134,7 +134,7 @@ export default function BecomeHostPage() {
                 <Button type="button" onClick={handleBack} variant="outline" className="rounded-full px-8 py-6 border-[#262626]/10">
                   <ArrowLeft className="w-4 h-4 mr-2" /> Back
                 </Button>
-                <Button type="button" onClick={handleNext} className="flex-1 bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-all flex items-center justify-center gap-2">
+                <Button type="button" onClick={handleNext} className="flex-1 bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all flex items-center justify-center gap-2">
                   Continue <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
@@ -143,18 +143,18 @@ export default function BecomeHostPage() {
 
           {step === 3 && (
             <div className="space-y-6 reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-              <div className="flex items-center gap-3 text-[#e4a4bd] mb-2">
+              <div className="flex items-center gap-3 text-[#3B9ECC] mb-2">
                 <FileText className="w-5 h-5" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Step 3: Host Agreement</span>
               </div>
               <div className="bg-white p-8 rounded-[32px] border border-[#262626]/5 space-y-4">
                 <p className="text-sm text-[#262626]/70 leading-relaxed font-medium">
-                  By joining Banjara, you agree to provide high-quality services, maintain accurate calendars, and follow our safety guidelines.
+                  By joining BANJARE, you agree to provide high-quality services, maintain accurate calendars, and follow our safety guidelines.
                 </p>
                 <div className="flex items-start gap-3 pt-4">
-                  <input type="checkbox" required className="mt-1 accent-[#e4a4bd]" id="agree" />
+                  <input type="checkbox" required className="mt-1 accent-[#3B9ECC]" id="agree" />
                   <label htmlFor="agree" className="text-xs text-[#262626]/60 font-bold uppercase tracking-tight leading-tight">
-                    I agree to the Banjara Host Terms of Service and Privacy Policy.
+                    I agree to the BANJARE Host Terms of Service and Privacy Policy.
                   </label>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function BecomeHostPage() {
                 <Button type="button" onClick={handleBack} variant="outline" className="rounded-full px-8 py-6 border-[#262626]/10">
                   <ArrowLeft className="w-4 h-4 mr-2" /> Back
                 </Button>
-                <Button type="submit" disabled={loading} className="flex-1 bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-all flex items-center justify-center gap-2">
+                <Button type="submit" disabled={loading} className="flex-1 bg-[#262626] text-white rounded-full px-12 py-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-all flex items-center justify-center gap-2">
                   {loading ? 'Submitting...' : 'Complete Application'}
                 </Button>
               </div>

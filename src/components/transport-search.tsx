@@ -46,7 +46,7 @@ export function TransportSearch() {
                   : "text-[#262626]/40 hover:text-[#262626] hover:bg-white/50"
               )}
             >
-              <tab.icon className={cn("w-4 h-4", type === tab.id ? "text-[#e4a4bd]" : "text-current")} />
+              <tab.icon className={cn("w-4 h-4", type === tab.id ? "text-[#3B9ECC]" : "text-current")} />
               {tab.label}
             </button>
           ))}
@@ -64,7 +64,7 @@ export function TransportSearch() {
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
                 placeholder="From where?" 
-                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg placeholder:text-[#262626]/20 focus:ring-2 focus:ring-[#e4a4bd]" 
+                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg placeholder:text-[#262626]/20 focus:ring-2 focus:ring-[#3B9ECC]" 
                 required
               />
             </div>
@@ -77,7 +77,7 @@ export function TransportSearch() {
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
                 placeholder="To where?" 
-                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg placeholder:text-[#262626]/20 focus:ring-2 focus:ring-[#e4a4bd]" 
+                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg placeholder:text-[#262626]/20 focus:ring-2 focus:ring-[#3B9ECC]" 
                 required
               />
             </div>
@@ -90,7 +90,7 @@ export function TransportSearch() {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg focus:ring-2 focus:ring-[#e4a4bd]" 
+                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg focus:ring-2 focus:ring-[#3B9ECC]" 
                 required
               />
             </div>
@@ -104,7 +104,7 @@ export function TransportSearch() {
                 min="1"
                 value={passengers}
                 onChange={(e) => setPassengers(parseInt(e.target.value))}
-                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg focus:ring-2 focus:ring-[#e4a4bd]" 
+                className="rounded-full px-6 py-8 border-[#262626]/5 bg-[#fdf8f3] text-[#262626] font-bold text-lg focus:ring-2 focus:ring-[#3B9ECC]" 
                 required
               />
             </div>
@@ -114,7 +114,7 @@ export function TransportSearch() {
           <div className="flex justify-end">
             <Button 
               type="submit"
-              className="bg-[#e4a4bd] text-[#262626] rounded-full px-16 py-10 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#262626] hover:text-[#e4a4bd] transition-super group"
+              className="bg-[#3B9ECC] text-[#262626] rounded-full px-16 py-10 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#262626] hover:text-[#3B9ECC] transition-super group"
             >
               Search {type}s
               <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-2 transition-transform" />

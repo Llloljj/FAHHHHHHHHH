@@ -19,13 +19,13 @@ export default async function GuestBookingsPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-[#262626] leading-[0.85]">
-              MY <br /> <span className="text-[#e4a4bd]">BOOKINGS</span>
+              MY <br /> <span className="text-[#3B9ECC]">BOOKINGS</span>
             </h1>
             <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-lg">
               Manage your upcoming trips, rentals, and expert guide reservations.
             </p>
           </div>
-          <Link href="/marketplace" className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super flex items-center gap-2">
+          <Link href="/marketplace" className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super flex items-center gap-2">
             <ShoppingBag className="w-4 h-4" />
             Explore Marketplace
           </Link>
@@ -37,7 +37,7 @@ export default async function GuestBookingsPage() {
               <ShoppingBag className="w-16 h-16 text-[#262626]/10 mx-auto mb-6" />
               <h2 className="text-2xl font-black uppercase tracking-tight text-[#262626]">No Bookings Yet</h2>
               <p className="text-[#262626]/40 font-medium mt-2 mb-8">Start your journey by booking a luxury home or vehicle.</p>
-              <Link href="/marketplace" className="text-[10px] font-black uppercase tracking-widest text-[#e4a4bd] hover:text-[#262626] transition-colors">
+              <Link href="/marketplace" className="text-[10px] font-black uppercase tracking-widest text-[#3B9ECC] hover:text-[#262626] transition-colors">
                 Browse Listings →
               </Link>
             </div>

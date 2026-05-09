@@ -40,7 +40,7 @@ export default function NewListingPage() {
   return (
     <div className="min-h-screen pt-32 px-8 bg-[#fdf8f3] pb-24">
       <div className="max-w-2xl mx-auto">
-        <Link href="/marketplace" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#e4a4bd] mb-8 inline-block">
+        <Link href="/marketplace" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#3B9ECC] mb-8 inline-block">
           ← Back to Marketplace
         </Link>
 
@@ -64,7 +64,7 @@ export default function NewListingPage() {
                     <Camera className="w-8 h-8 text-[#262626]/20 mx-auto mb-4" />
                     <p className="text-xs font-bold text-[#262626]/40 uppercase tracking-widest">Upload Identity Document (Mock)</p>
                   </div>
-                  <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super">
+                  <Button type="submit" disabled={loading} className="w-full bg-[#262626] text-white rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
                     {loading ? 'Verifying...' : 'Verify & Continue'}
                   </Button>
                 </form>
@@ -84,9 +84,9 @@ export default function NewListingPage() {
                 <button 
                   key={item.id}
                   onClick={() => setType(item.id as any)}
-                  className={`p-6 rounded-[24px] border-2 transition-all flex flex-col items-center gap-4 ${type === item.id ? 'border-[#e4a4bd] bg-[#e4a4bd]/10' : 'border-[#262626]/5 bg-white'}`}
+                  className={`p-6 rounded-[24px] border-2 transition-all flex flex-col items-center gap-4 ${type === item.id ? 'border-[#3B9ECC] bg-[#3B9ECC]/10' : 'border-[#262626]/5 bg-white'}`}
                 >
-                  <item.icon className={`w-8 h-8 ${type === item.id ? 'text-[#e4a4bd]' : 'text-[#262626]/20'}`} />
+                  <item.icon className={`w-8 h-8 ${type === item.id ? 'text-[#3B9ECC]' : 'text-[#262626]/20'}`} />
                   <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
                 </button>
               ))}
@@ -111,15 +111,15 @@ export default function NewListingPage() {
                   </div>
                   {type === 'vehicle' && (
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e4a4bd]">Security Deposit (Refundable) (₹)</label>
-                      <Input name="security_deposit_amount" type="number" placeholder="2000" className="rounded-full px-6 py-6 border-[#e4a4bd]/20" />
+                      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC]">Security Deposit (Refundable) (₹)</label>
+                      <Input name="security_deposit_amount" type="number" placeholder="2000" className="rounded-full px-6 py-6 border-[#3B9ECC]/20" />
                     </div>
                   )}
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em]">Description</label>
                     <Textarea name="description" placeholder="Detailed description of features, amenities, or services..." className="rounded-[24px] p-6" />
                   </div>
-                  <Button type="submit" disabled={loading || !type} className="w-full bg-[#e4a4bd] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super flex items-center justify-center gap-3">
+                  <Button type="submit" disabled={loading || !type} className="w-full bg-[#3B9ECC] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super flex items-center justify-center gap-3">
                     {loading ? 'Publishing...' : 'Publish Listing'}
                     <ArrowRight className="w-4 h-4" />
                   </Button>

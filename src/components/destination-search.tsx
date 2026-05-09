@@ -71,18 +71,18 @@ export function DestinationSearch({ onSelect, placeholder, defaultValue, name }:
   return (
     <div ref={wrapperRef} className="relative group w-full">
       <div className="relative">
-        <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-[#e4a4bd] z-10" />
+        <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-[#3B9ECC] z-10" />
         <Input
           name={name}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder || "Search for a city (OSM)..."}
           autoComplete="off"
-          className="rounded-full pl-14 pr-12 py-6 border-[#262626]/20 focus-visible:ring-[#e4a4bd] bg-white transition-super"
+          className="rounded-full pl-14 pr-12 py-6 border-[#262626]/20 focus-visible:ring-[#3B9ECC] bg-white transition-super"
         />
         <div className="absolute right-6 top-1/2 -translate-y-1/2">
           {loading ? (
-            <Loader2 className="w-4 h-4 text-[#e4a4bd] animate-spin" />
+            <Loader2 className="w-4 h-4 text-[#3B9ECC] animate-spin" />
           ) : (
             <Search className="w-4 h-4 text-[#262626]/20" />
           )}
@@ -98,7 +98,7 @@ export function DestinationSearch({ onSelect, placeholder, defaultValue, name }:
               onClick={() => handleSelect(s)}
               className="w-full text-left px-8 py-4 text-sm font-medium text-[#262626] hover:bg-[#f5f0eb] border-b border-[#262626]/5 last:border-0 flex items-start gap-3 transition-colors"
             >
-              <MapPin className="w-4 h-4 text-[#e4a4bd] mt-1 shrink-0" />
+              <MapPin className="w-4 h-4 text-[#3B9ECC] mt-1 shrink-0" />
               <span className="truncate">{s.display_name}</span>
             </button>
           ))}

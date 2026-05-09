@@ -51,7 +51,7 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="reveal-up-start [animation:reveal-up-active_1s_cubic-bezier(0.16,1,0.3,1)_forwards]">
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-[#262626] leading-[0.85]">
-              MASTER <br /> <span className="text-[#e4a4bd]">ITINERARY</span>
+              MASTER <br /> <span className="text-[#3B9ECC]">ITINERARY</span>
             </h1>
             <p className="text-xl text-[#262626]/60 mt-6 font-medium max-w-lg uppercase tracking-tight">
               {trip?.destination} | {new Date(trip?.start_date).toLocaleDateString()} - {new Date(trip?.end_date).toLocaleDateString()}
@@ -60,7 +60,7 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
 
           <Dialog>
             <DialogTrigger>
-              <Button className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super flex items-center gap-2">
+              <Button className="bg-[#262626] text-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super flex items-center gap-2">
                 <Plus className="w-4 h-4" />
                 Add Activity
               </Button>
@@ -99,7 +99,7 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/40">Notes</label>
                   <Textarea name="description" placeholder="Dress code: Formal..." className="rounded-[24px] p-6 border-[#262626]/10" />
                 </div>
-                <Button type="submit" className="w-full bg-[#262626] text-white rounded-full py-8 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#e4a4bd] hover:text-[#262626] transition-super">
+                <Button type="submit" className="w-full bg-[#262626] text-white rounded-full py-8 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#3B9ECC] hover:text-[#262626] transition-super">
                   Save Activity
                 </Button>
               </form>

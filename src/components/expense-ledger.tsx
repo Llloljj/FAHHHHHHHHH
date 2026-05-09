@@ -129,7 +129,7 @@ export function ExpenseLedger({ tripId, expenses, settlements, members, currentU
               <span className="text-5xl font-black tracking-tighter">
                 ₹{Math.abs(currentUserBalance).toFixed(0)}
               </span>
-              <span className={`text-sm font-black uppercase tracking-widest mb-2 flex items-center gap-1 ${currentUserBalance >= 0 ? 'text-[#e4a4bd]' : 'text-red-400'}`}>
+              <span className={`text-sm font-black uppercase tracking-widest mb-2 flex items-center gap-1 ${currentUserBalance >= 0 ? 'text-[#3B9ECC]' : 'text-red-400'}`}>
                 {currentUserBalance >= 0 ? (
                   <><ArrowUpRight className="w-4 h-4" /> You are owed</>
                 ) : (
@@ -165,7 +165,7 @@ export function ExpenseLedger({ tripId, expenses, settlements, members, currentU
                   className="rounded-full pl-11 bg-[#f5f0eb] border-0"
                 />
               </div>
-              <Button type="submit" disabled={loading} className="rounded-full bg-[#e4a4bd] hover:opacity-80 text-[#262626]">
+              <Button type="submit" disabled={loading} className="rounded-full bg-[#3B9ECC] hover:opacity-80 text-[#262626]">
                 <Plus className="w-5 h-5" />
               </Button>
             </form>
@@ -191,13 +191,13 @@ export function ExpenseLedger({ tripId, expenses, settlements, members, currentU
                   </span>
                 </div>
                 <div className="text-right">
-                  <div className="text-lg font-black text-[#e4a4bd]">₹{s.amount.toFixed(0)}</div>
+                  <div className="text-lg font-black text-[#3B9ECC]">₹{s.amount.toFixed(0)}</div>
                   <Button 
                     variant="ghost" 
                     size="sm" 
                     disabled={loading}
                     onClick={() => handleSettle(s.from, s.to, s.amount)}
-                    className="h-6 text-[8px] font-black uppercase tracking-widest text-[#262626]/40 hover:text-[#e4a4bd]"
+                    className="h-6 text-[8px] font-black uppercase tracking-widest text-[#262626]/40 hover:text-[#3B9ECC]"
                   >
                     {loading ? '...' : 'Settle'}
                   </Button>
@@ -212,7 +212,7 @@ export function ExpenseLedger({ tripId, expenses, settlements, members, currentU
       <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden">
         <CardHeader className="bg-[#f5f0eb]/50 p-6 border-b border-[#262626]/5 flex flex-row items-center justify-between">
           <CardTitle className="text-xl font-black uppercase tracking-tighter flex items-center gap-3">
-            <History className="w-5 h-5 text-[#e4a4bd]" />
+            <History className="w-5 h-5 text-[#3B9ECC]" />
             Expense Ledger
           </CardTitle>
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#262626]/40">
@@ -249,7 +249,7 @@ export function ExpenseLedger({ tripId, expenses, settlements, members, currentU
                       </td>
                       <td className="p-6">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-[#e4a4bd]/20 flex items-center justify-center text-[8px] font-black text-[#e4a4bd]">
+                          <div className="w-6 h-6 rounded-full bg-[#3B9ECC]/20 flex items-center justify-center text-[8px] font-black text-[#3B9ECC]">
                             {exp.payer_id === currentUserId ? 'YOU' : 'P'}
                           </div>
                           <span className="text-xs font-bold text-[#262626]/70 uppercase">

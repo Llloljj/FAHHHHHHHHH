@@ -15,18 +15,17 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 h-[80px] z-50 transition-super glass-nav ${
-        scrolled ? 'shadow-sm shadow-[#262626]/5' : ''
-      }`}
+      className={`fixed top-0 left-0 right-0 h-[80px] z-50 transition-super glass-nav ${scrolled ? 'shadow-sm shadow-[#262626]/5' : ''
+        }`}
     >
       <div className="flex h-full items-center justify-between px-8 md:px-16 mx-auto">
 
         {/* Left: Brand */}
         <Link
           href="/"
-          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#e4a4bd] transition-colors"
+          className="font-black text-2xl tracking-tighter uppercase text-[#262626] hover:text-[#3B9ECC] transition-colors"
         >
-          BANJARA
+          BANJARE
         </Link>
 
         {/* Center: Menu */}
@@ -40,7 +39,7 @@ export function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="label-utility text-[#262626] hover:text-[#e4a4bd] transition-super"
+              className="label-utility text-[#262626] hover:text-[#3B9ECC] transition-super"
               style={{ letterSpacing: '0.2em' }}
             >
               {item.label}
@@ -52,7 +51,7 @@ export function Navbar() {
         <div className="flex items-center space-x-4">
           <Link
             href="/trips/new"
-            className="bg-[#e4a4bd] text-[#262626] rounded-full px-8 py-3 label-utility hover:bg-[#262626] hover:text-[#e4a4bd] transition-super flex items-center gap-2"
+            className="bg-[#3B9ECC] text-[#262626] rounded-full px-8 py-3 label-utility hover:bg-[#262626] hover:text-[#3B9ECC] transition-super flex items-center gap-2"
             style={{ letterSpacing: '0.15em' }}
           >
             <PlusCircle className="h-3 w-3 shrink-0" />

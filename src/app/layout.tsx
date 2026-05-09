@@ -12,12 +12,12 @@ const leagueSpartan = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: "Banjara | Peer-to-Peer Luxury Travel",
+  title: "BANJARE | Peer-to-Peer Luxury Travel",
   description:
     "Experience peer-to-peer luxury travel. AI-curated group itineraries, verified local experts, and seamless collaboration — all in one platform.",
   keywords: ["luxury travel", "group travel", "AI itinerary", "peer-to-peer", "vacation planning"],
   openGraph: {
-    title: "Banjara | Peer-to-Peer Luxury Travel",
+    title: "BANJARE | Peer-to-Peer Luxury Travel",
     description: "AI-curated luxury group travel experiences.",
     type: "website",
   },

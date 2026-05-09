@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { createBookingOrder, confirmBooking } from '@/app/actions/booking-actions'
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -32,7 +32,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
   const [open, setOpen] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
-  const days = date?.from && date?.to 
+  const days = date?.from && date?.to
     ? Math.ceil((date.to.getTime() - date.from.getTime()) / (1000 * 60 * 60 * 24)) + 1
     : 0
   const total = days * listing.price_per_day
@@ -46,7 +46,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
 
     try {
       const order = await createBookingOrder(listing.id, total)
-      
+
       await confirmBooking({
         listingId: listing.id,
         startDate: format(date.from, 'yyyy-MM-dd'),
@@ -55,7 +55,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
         razorpayOrderId: order.orderId,
         razorpayPaymentId: `mock_pay_${Math.random().toString(36).substring(7)}`
       })
-      
+
       setIsSuccess(true)
     } catch (err) {
       console.error(err)
@@ -72,7 +72,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
       <DialogContent className="max-w-4xl p-0 overflow-hidden border-0 rounded-[32px] bg-[#fdf8f3]">
         {isSuccess ? (
           <div className="p-20 bg-white min-h-[500px] flex items-center justify-center">
-            <SuccessState 
+            <SuccessState
               title="Booking Confirmed"
               message={`You're all set! Your stay at ${listing.title} has been booked. Check your dashboard for details.`}
               actionLabel="Go to Dashboard"
@@ -115,32 +115,32 @@ export function BookingModal({ listing, children }: BookingModalProps) {
                     <span>{days}</span>
                   </div>
                   {listing.security_deposit_amount && listing.security_deposit_amount > 0 && (
-                    <div className="flex justify-between items-center text-sm font-medium text-[#e4a4bd]">
+                    <div className="flex justify-between items-center text-sm font-medium text-[#3B9ECC]">
                       <span className="opacity-60">Security Deposit</span>
                       <span>₹{listing.security_deposit_amount}</span>
                     </div>
                   )}
                   <div className="pt-4 border-t border-white/10 flex justify-between items-center">
                     <span className="text-lg font-black uppercase tracking-tighter">Total Amount</span>
-                    <span className="text-2xl font-black text-[#e4a4bd]">₹{total + (listing.security_deposit_amount || 0)}</span>
+                    <span className="text-2xl font-black text-[#3B9ECC]">₹{total + (listing.security_deposit_amount || 0)}</span>
                   </div>
                 </div>
 
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10 space-y-3">
-                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#e4a4bd]">
+                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#3B9ECC]">
                     <ShieldCheck className="w-4 h-4" />
                     Secure Booking
                   </div>
                   <p className="text-[10px] text-white/40 leading-relaxed">
-                    Your payment is protected by Banjara Secure. Hosts receive payment only after check-in.
+                    Your payment is protected by BANJARE Secure. Hosts receive payment only after check-in.
                   </p>
                 </div>
               </div>
 
-              <Button 
+              <Button
                 disabled={loading || !date?.from || !date?.to}
                 onClick={handleBooking}
-                className="w-full bg-[#e4a4bd] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
+                className="w-full bg-[#3B9ECC] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
               >
                 {loading ? 'Processing...' : (
                   <span className="flex items-center gap-2">

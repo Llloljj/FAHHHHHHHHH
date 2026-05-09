@@ -49,14 +49,14 @@ export default function Home() {
 
             {/* Kicker label */}
             <div className="flex items-center gap-4 mb-10">
-              <span className="label-utility text-[#e4a4bd]">Peer-to-Peer Luxury Travel</span>
-              <span className="block w-12 h-px bg-[#e4a4bd]" />
+              <span className="label-utility text-[#3B9ECC]">Peer-to-Peer Luxury Travel</span>
+              <span className="block w-12 h-px bg-[#3B9ECC]" />
             </div>
 
             <h1 className="font-black leading-[0.82] tracking-tighter text-[#262626] uppercase"
               style={{ fontSize: 'clamp(72px, 14vw, 200px)' }}>
               BEYOND <br />
-              <span className="lowercase italic text-[#e4a4bd] font-light tracking-normal">the</span>{' '}
+              <span className="lowercase italic text-[#3B9ECC] font-light tracking-normal">the</span>{' '}
               <br />
               ORDINARY
             </h1>
@@ -68,14 +68,14 @@ export default function Home() {
             <div className="mt-14 flex flex-wrap items-center gap-8">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#e4a4bd] hover:text-[#262626] transition-colors text-sm"
+                className="inline-flex items-center gap-4 font-black uppercase tracking-widest text-white bg-[#262626] rounded-full px-10 py-5 hover:bg-[#3B9ECC] hover:text-[#262626] transition-colors text-sm"
               >
                 Start Planning
                 <span className="text-base leading-none">→</span>
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 border-[#e4a4bd] pb-1 hover:text-[#e4a4bd] transition-colors text-sm"
+                className="inline-flex items-center gap-3 font-black uppercase tracking-widest text-[#262626] border-b-2 border-[#3B9ECC] pb-1 hover:text-[#3B9ECC] transition-colors text-sm"
               >
                 See How It Works
               </Link>
@@ -105,7 +105,7 @@ export default function Home() {
             </div>
 
             {/* Floating Concierge Badge */}
-            <div className="absolute -left-8 md:-left-16 bottom-20 w-[160px] h-[160px] rounded-full bg-[#e4a4bd] flex flex-col items-center justify-center text-[#262626] animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
+            <div className="absolute -left-8 md:-left-16 bottom-20 w-[160px] h-[160px] rounded-full bg-[#3B9ECC] flex flex-col items-center justify-center text-[#262626] animate-bounce-slow z-20 shadow-2xl border-4 border-[#fdf8f3]">
               <span className="text-4xl italic font-black leading-none">01</span>
               <span className="text-[8px] uppercase tracking-[0.25em] font-black mt-3 text-center leading-tight px-4">
                 AI Travel<br />Concierge
@@ -121,7 +121,7 @@ export default function Home() {
           <div className="flex items-end justify-between mb-16 flex-wrap gap-8">
             <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85]"
               style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
-              The <span className="text-[#e4a4bd] italic font-light">Banjara</span><br /> Suite
+              The <span className="text-[#3B9ECC] italic font-light">BANJARE</span><br /> Suite
             </h2>
             <p className="label-utility text-[#262626]/40 max-w-[200px] text-right leading-loose">
               Three pillars of premium group travel
@@ -133,10 +133,10 @@ export default function Home() {
           {SERVICES.map((service, i) => (
             <RevealUp key={i}>
               <div
-                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#e4a4bd] transition-super cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
+                className={`p-10 md:p-12 border-[#262626]/10 group hover:bg-[#3B9ECC] transition-super cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
                 style={{ minHeight: '320px' }}
               >
-                <div className="text-4xl font-black italic text-[#e4a4bd] group-hover:text-[#262626] transition-super mb-10 leading-none">
+                <div className="text-4xl font-black italic text-[#3B9ECC] group-hover:text-[#262626] transition-super mb-10 leading-none">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-5">
@@ -162,14 +162,14 @@ export default function Home() {
             <h2 className="font-black uppercase tracking-tighter text-[#fdf8f3] leading-[0.85]"
               style={{ fontSize: 'clamp(36px, 5vw, 72px)' }}>
               Travel is not a<br />
-              <span className="text-[#e4a4bd] italic font-light">destination</span>,<br />
+              <span className="text-[#3B9ECC] italic font-light">destination</span>,<br />
               it&apos;s a state of mind.
             </h2>
             <div className="flex flex-col gap-6 md:max-w-xs">
               <p className="text-[#fdf8f3]/50 font-medium leading-relaxed">
-                Banjara connects you with verified local experts and AI-curated experiences that redefine what group travel means.
+                BANJARE connects you with verified local experts and AI-curated experiences that redefine what group travel means.
               </p>
-              <Link href="/login" className="label-utility text-[#e4a4bd] hover:text-white transition-colors inline-flex items-center gap-3">
+              <Link href="/login" className="label-utility text-[#3B9ECC] hover:text-white transition-colors inline-flex items-center gap-3">
                 Join the community <span>→</span>
               </Link>
             </div>
@@ -181,11 +181,11 @@ export default function Home() {
       <section className="py-32 px-8 md:px-16 bg-[#fdf8f3]">
         <RevealUp>
           <div className="mb-24">
-            <p className="label-utility text-[#e4a4bd] mb-6">Our Portfolio</p>
+            <p className="label-utility text-[#3B9ECC] mb-6">Our Portfolio</p>
             <h2 className="font-black uppercase tracking-tighter text-[#262626] leading-[0.85]"
               style={{ fontSize: 'clamp(48px, 8vw, 120px)' }}>
               Curated <br />
-              <span className="text-[#e4a4bd] italic font-light">Destinations</span>
+              <span className="text-[#3B9ECC] italic font-light">Destinations</span>
             </h2>
           </div>
         </RevealUp>
@@ -211,7 +211,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="label-utility text-[#e4a4bd] mb-3">{item.tag}</div>
+                <div className="label-utility text-[#3B9ECC] mb-3">{item.tag}</div>
                 <h3 className="text-3xl font-black text-[#262626] uppercase tracking-tighter flex items-center gap-4 flex-wrap">
                   {item.title}
                   <span className="text-lg opacity-20">•</span>
@@ -249,7 +249,7 @@ export default function Home() {
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
           <div className="col-span-1 md:col-span-5">
-            <h2 className="font-black text-5xl tracking-tighter uppercase text-[#262626] mb-6">BANJARA</h2>
+            <h2 className="font-black text-5xl tracking-tighter uppercase text-[#262626] mb-6">BANJARE</h2>
             <p className="text-lg text-[#262626]/60 max-w-md leading-relaxed font-medium">
               Elevating group travel through intelligent curation, peer-to-peer luxury, and seamless collaboration.
             </p>
@@ -284,7 +284,7 @@ export default function Home() {
               }
             ].map((col) => (
               <div key={col.heading}>
-                <h4 className="label-utility text-[#e4a4bd] underline underline-offset-8 mb-8">
+                <h4 className="label-utility text-[#3B9ECC] underline underline-offset-8 mb-8">
                   {col.heading}
                 </h4>
                 <ul className="space-y-4">
@@ -293,7 +293,7 @@ export default function Home() {
                       {link.href ? (
                         <Link
                           href={link.href}
-                          className="text-[#262626] hover:text-[#e4a4bd] font-bold text-xs uppercase tracking-widest transition-super"
+                          className="text-[#262626] hover:text-[#3B9ECC] font-bold text-xs uppercase tracking-widest transition-super"
                         >
                           {link.label}
                         </Link>
@@ -311,10 +311,10 @@ export default function Home() {
         </div>
 
         <div className="pt-8 border-t border-[#262626]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-black uppercase tracking-[0.2em] text-[#262626]/30">
-          <p>© 2026 BANJARA. All Rights Reserved.</p>
+          <p>© 2026 BANJARE. All Rights Reserved.</p>
           <div className="flex gap-8">
-            <Link href="#" className="hover:text-[#e4a4bd] transition-super">Privacy Policy</Link>
-            <Link href="#" className="hover:text-[#e4a4bd] transition-super">Terms of Service</Link>
+            <Link href="#" className="hover:text-[#3B9ECC] transition-super">Privacy Policy</Link>
+            <Link href="#" className="hover:text-[#3B9ECC] transition-super">Terms of Service</Link>
           </div>
         </div>
       </footer>
