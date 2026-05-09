@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LayoutDashboard, PlusCircle } from 'lucide-react'
+import { LayoutDashboard, PlusCircle, ShoppingBag } from 'lucide-react'
 
 export async function Navbar() {
   return (
@@ -14,6 +14,9 @@ export async function Navbar() {
         <div className="hidden md:flex items-center space-x-12">
           <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
             My Trips
+          </Link>
+          <Link href="/marketplace" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
+            Marketplace
           </Link>
           <Link href="/trips/new" className="text-[10px] uppercase tracking-[0.2em] font-black text-[#262626] hover:text-[#e4a4bd] transition-colors duration-300">
             Plan a Trip

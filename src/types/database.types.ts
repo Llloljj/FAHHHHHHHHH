@@ -37,3 +37,29 @@ export interface ExpenseSplit {
   user_id: string;
   amount: number;
 }
+
+export type ListingType = 'home' | 'vehicle' | 'guide';
+
+export interface Listing {
+  id: string;
+  host_id: string;
+  type: ListingType;
+  title: string;
+  description: string;
+  price_per_day: number;
+  location: string;
+  images: string[];
+  features: string[];
+  is_verified: boolean;
+  created_at: string;
+}
+
+export interface HostProfile {
+  id: string;
+  user_id: string;
+  full_name: string;
+  bio: string;
+  kyc_status: 'pending' | 'verified' | 'rejected';
+  identity_doc_url?: string;
+  created_at: string;
+}
