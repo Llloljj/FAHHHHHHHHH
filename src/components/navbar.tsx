@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { PlusCircle, Menu, X } from 'lucide-react'
 
@@ -32,8 +33,17 @@ export function Navbar() {
           {/* Left: Brand */}
           <Link
             href="/"
-            className="font-black text-3xl tracking-tighter uppercase text-[#262626] hover:accent-gradient-text transition-colors"
+            className="flex items-center gap-3 font-black text-3xl tracking-tighter uppercase text-[#262626] hover:accent-gradient-text transition-colors"
           >
+            <div className="relative w-14 h-14 overflow-hidden">
+              <Image
+                src="https://dynamic.design.com/preview/logodraft/8837edac-5639-49b6-922e-11db8d29ac27/image/extra-large.en-us.png"
+                alt="Banjare Logo"
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
             BANJARE
           </Link>
 

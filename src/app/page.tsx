@@ -280,7 +280,18 @@ export default function Home() {
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
           <div className="col-span-1 md:col-span-5">
-            <h2 className="font-black text-5xl tracking-tighter uppercase text-[#262626] mb-6">BANJARE</h2>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative w-16 h-16 overflow-hidden">
+                <Image
+                  src="https://dynamic.design.com/preview/logodraft/8837edac-5639-49b6-922e-11db8d29ac27/image/extra-large.en-us.png"
+                  alt="Banjare Logo"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+              <h2 className="font-black text-5xl tracking-tighter uppercase text-[#262626]">BANJARE</h2>
+            </div>
             <p className="text-lg text-[#262626]/60 max-w-md leading-relaxed font-medium">
               Elevating group travel through intelligent curation, peer-to-peer luxury, and seamless collaboration.
             </p>
