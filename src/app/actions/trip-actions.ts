@@ -106,16 +106,26 @@ export async function deleteTrip(tripId: string) {
     }
   })
 
-  // Verify ownership or admin role in trip_members
-  const { data: member } = await adminAuthClient
+  // Check if trip has any members
+  const { data: members } = await adminAuthClient
     .from('trip_members')
-    .select('role')
+    .select('id')
     .eq('trip_id', tripId)
-    .eq('user_id', user.id)
-    .single()
 
-  if (!member || member.role !== 'admin') {
-    throw new Error('Not authorized to delete this trip')
+  const hasMembers = members && members.length > 0
+
+  if (hasMembers) {
+    // Verify ownership or admin role in trip_members
+    const { data: member } = await adminAuthClient
+      .from('trip_members')
+      .select('role')
+      .eq('trip_id', tripId)
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    if (!member || member.role !== 'admin') {
+      throw new Error('Not authorized to delete this trip')
+    }
   }
 
   const { error } = await adminAuthClient
