@@ -49,17 +49,20 @@ export function JaipurChat() {
             </div>
           ) : (
             <div className="space-y-6">
-              {messages.map((m) => (
-                <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-2xl px-6 py-4 text-sm font-medium leading-relaxed whitespace-pre-wrap shadow-sm transition-all ${
-                    m.role === 'user'
-                      ? 'bg-[#262626] text-white rounded-br-none'
-                      : 'bg-white text-[#262626] rounded-bl-none border border-[#262626]/5'
-                  }`}>
-                    {m.content}
+              {messages.map((m: any) => {
+                const text = m.parts?.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('') ?? ''
+                return (
+                  <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[85%] rounded-2xl px-6 py-4 text-sm font-medium leading-relaxed whitespace-pre-wrap shadow-sm transition-all ${
+                      m.role === 'user'
+                        ? 'bg-[#262626] text-white rounded-br-none'
+                        : 'bg-white text-[#262626] rounded-bl-none border border-[#262626]/5'
+                    }`}>
+                      {text}
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
               
               {isLoading && (
                 <div className="flex justify-start">
