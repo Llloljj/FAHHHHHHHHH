@@ -31,11 +31,9 @@ export function Navbar() {
         {/* Center: Menu */}
         <div className="hidden md:flex items-center space-x-10">
           {[
-            { label: 'Destinations', href: '#' },
             { label: 'My Trips', href: '/dashboard' },
             { label: 'Plan a Trip', href: '/trips/new' },
             { label: 'Offer Services', href: '/host/apply' },
-            { label: 'About', href: '#' },
           ].map((item) => (
             <Link
               key={item.label}
