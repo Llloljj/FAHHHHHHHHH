@@ -23,6 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { TravelGuideWidget } from "@/components/travel-guide-widget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,6 +38,7 @@ export default function RootLayout({
         <GuestSession />
         <Navbar />
         <main className="flex-1">{children}</main>
+        <TravelGuideWidget />
       </body>
     </html>
   );

@@ -3,10 +3,10 @@ import Image from 'next/image'
 import { RevealUp } from '@/components/reveal-up'
 
 const DESTINATIONS = [
-  { tag: "CULTURE", title: "Kyoto Heritage", img: "/kyoto.png", offset: false, year: "2026" },
-  { tag: "ADVENTURE", title: "Swiss Alps", img: "/alps.png", offset: true, year: "2026" },
-  { tag: "WELLNESS", title: "Bali Retreat", img: "/bali.png", offset: false, year: "2026" },
-  { tag: "LEISURE", title: "Amalfi Coast", img: "/amalfi.png", offset: true, year: "2026" },
+  { tag: "CULTURE", title: "Kolkata", img: "https://images.unsplash.com/photo-1603813507806-0d311a6eecd1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", offset: false, year: "2026" },
+  { tag: "ADVENTURE", title: "Rishikesh", img: "/alps.png", offset: true, year: "2026" },
+  { tag: "WELLNESS", title: "Kerala", img: "/bali.png", offset: false, year: "2026" },
+  { tag: "LEISURE", title: "Jaipur", img: "/amalfi.png", offset: true, year: "2026" },
 ]
 
 const SERVICES = [
@@ -113,7 +113,7 @@ export default function Home() {
               </div>
               {/* Corner label */}
               <div className="absolute bottom-6 left-6 z-20">
-                <p className="label-utility text-white">Premium Experience</p>
+                <p className="label-utility text-white" style={{ fontSize: '16px' }}>Premium Experience</p>
               </div>
             </div>
 
