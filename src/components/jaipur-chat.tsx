@@ -19,7 +19,7 @@ export function JaipurChat() {
         <CardTitle className="text-2xl font-black uppercase tracking-tighter flex items-center justify-between">
           <div className="flex items-center">
             <Bot className="w-6 h-6 mr-3 text-[#e4a4bd]" />
-            Jaipur Assistant
+            Assistant
           </div>
           <div className="flex items-center text-[10px] bg-[#e4a4bd]/20 text-[#e4a4bd] px-3 py-1 rounded-full font-black uppercase tracking-wider">
             <Sparkles className="w-3 h-3 mr-1" />
@@ -36,7 +36,7 @@ export function JaipurChat() {
                 <Bot className="w-8 h-8 text-[#e4a4bd]" />
               </div>
               <p className="text-[10px] uppercase tracking-[0.2em] font-black mb-2 text-[#262626]">
-                Ask me about Jaipur!
+                Ask me anything!
               </p>
               <p className="text-sm font-medium text-[#262626]/60 max-w-xs">
                 I know about rentals, guides, destinations, and safety in Jaipur.
@@ -74,7 +74,7 @@ export function JaipurChat() {
             <Input
               value={input}
               onChange={handleInputChange}
-              placeholder={`Ask about Jaipur...`}
+              placeholder={`Ask anything...`}
               className="w-full rounded-full bg-[#FAF7F2] border-0 px-6 py-6 pr-14 focus-visible:ring-[#e4a4bd] text-sm font-medium"
             />
             <Button
