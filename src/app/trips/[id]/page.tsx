@@ -35,8 +35,8 @@ export default async function TripDashboard({ params }: { params: Promise<{ id: 
     .eq('id', id)
     .single()
 
-  // Manual Authorization: Ensure the logged-in user is actually a member of this trip
-  const isMember = trip?.trip_members?.some((m: any) => m.user_id === user?.id)
+  // Manual Authorization: Ensure the logged-in user is actually a member of this trip, or allow access if the trip has no members (guest trips)
+  const isMember = trip?.trip_members?.length === 0 || trip?.trip_members?.some((m: any) => m.user_id === user?.id)
   
   if (error || !trip || !isMember) {
     return (
