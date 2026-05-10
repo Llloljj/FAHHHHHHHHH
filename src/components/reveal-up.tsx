@@ -6,9 +6,10 @@ interface RevealUpProps {
   children: React.ReactNode
   className?: string
   delay?: number // ms
+  direction?: 'up' | 'left' | 'right'
 }
 
-export function RevealUp({ children, className = '', delay = 0 }: RevealUpProps) {
+export function RevealUp({ children, className = '', delay = 0, direction = 'up' }: RevealUpProps) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -28,24 +29,30 @@ export function RevealUp({ children, className = '', delay = 0 }: RevealUpProps)
 
     observer.observe(currentRef)
 
-    // Fallback: Ensure visibility even if observer fails
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 800)
-
     return () => {
       if (currentRef) observer.unobserve(currentRef)
-      clearTimeout(timer)
     }
   }, [])
+
+  const getInitialTransform = () => {
+    switch (direction) {
+      case 'left':  return 'translateX(-80px)'
+      case 'right': return 'translateX(80px)'
+      default:      return 'translateY(40px)'
+    }
+  }
 
   return (
     <div
       ref={ref}
-      className={`${isVisible ? 'reveal-up-active' : 'reveal-up-start'} ${className}`}
+      className={className}
       style={{
         transitionDelay: `${delay}ms`,
-        visibility: isVisible ? 'visible' : 'hidden'
+        transitionDuration: '1800ms',
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionProperty: 'opacity, transform',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translate(0, 0)' : getInitialTransform(),
       }}
     >
       {children}

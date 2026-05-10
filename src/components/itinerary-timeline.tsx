@@ -53,7 +53,7 @@ export function ItineraryTimeline({ tripId, items }: ItineraryTimelineProps) {
     switch (item.type) {
       case 'meal': return <Star className="w-5 h-5 text-yellow-500" />
       case 'transport': return <Car className="w-5 h-5 text-blue-500" />
-      default: return <Clock className="w-5 h-5 text-[#3B9ECC]" />
+      default: return <Clock className="w-5 h-5 accent-gradient-text" />
     }
   }
 
@@ -68,7 +68,7 @@ export function ItineraryTimeline({ tripId, items }: ItineraryTimelineProps) {
           <div key={item.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
             
             {/* Dot */}
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#262626] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-super group-hover:scale-125 group-hover:border-[#3B9ECC]">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#262626] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-super group-hover:scale-125 group-hover:accent-gradient-border">
               {getTypeIcon(item)}
             </div>
 
@@ -80,7 +80,7 @@ export function ItineraryTimeline({ tripId, items }: ItineraryTimelineProps) {
               )}>
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#3B9ECC]">
+                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] accent-gradient-text">
                       <Calendar className="w-3 h-3" />
                       {format(itemDate, 'MMM dd, yyyy')}
                       <span className="opacity-20 mx-2">|</span>

@@ -71,6 +71,11 @@
     to   { opacity: 1; transform: translateX(0); }
   }
 
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50%       { transform: translateY(-10px); }
@@ -178,25 +183,25 @@
    BANJARE — Core Utility Classes
    ========================================= */
 
-/* Sky-to-nature gradient — the signature accent */
+/* True Blue-to-Green gradient */
 .accent-gradient {
-  background: linear-gradient(135deg, #3B9ECC 0%, #52B788 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #16A34A 100%);
 }
 
 .accent-gradient-text {
-  background: linear-gradient(135deg, #3B9ECC 0%, #52B788 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #16A34A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .accent-gradient-border {
-  border-image: linear-gradient(135deg, #3B9ECC, #52B788) 1;
+  border-image: linear-gradient(135deg, #2563EB, #16A34A) 1;
 }
 
 /* Weighted transition */
 .transition-super {
-  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Scroll-reveal system */
@@ -257,6 +262,11 @@
   opacity: 0;
 }
 
+.hero-slide-left {
+  animation: slide-in-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
 /* Glass utilities */
 .glass {
   background: rgba(255, 255, 255, 0.08);
@@ -274,7 +284,7 @@
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f4f9f7; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3B9ECC, #52B788);
+  background: linear-gradient(180deg, #2563EB, #16A34A);
   border-radius: 20px;
   border: 2px solid #f4f9f7;
 }
@@ -286,5 +296,5 @@
 }
 
 .service-card:hover {
-  background: linear-gradient(135deg, rgba(59, 158, 204, 0.1) 0%, rgba(82, 183, 136, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(22, 163, 74, 0.1) 100%);
 }

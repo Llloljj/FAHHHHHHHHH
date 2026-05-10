@@ -115,19 +115,19 @@ export function BookingModal({ listing, children }: BookingModalProps) {
                     <span>{days}</span>
                   </div>
                   {listing.security_deposit_amount && listing.security_deposit_amount > 0 && (
-                    <div className="flex justify-between items-center text-sm font-medium text-[#3B9ECC]">
+                    <div className="flex justify-between items-center text-sm font-medium accent-gradient-text">
                       <span className="opacity-60">Security Deposit</span>
                       <span>₹{listing.security_deposit_amount}</span>
                     </div>
                   )}
                   <div className="pt-4 border-t border-white/10 flex justify-between items-center">
                     <span className="text-lg font-black uppercase tracking-tighter">Total Amount</span>
-                    <span className="text-2xl font-black text-[#3B9ECC]">₹{total + (listing.security_deposit_amount || 0)}</span>
+                    <span className="text-2xl font-black accent-gradient-text">₹{total + (listing.security_deposit_amount || 0)}</span>
                   </div>
                 </div>
 
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10 space-y-3">
-                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#3B9ECC]">
+                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest accent-gradient-text">
                     <ShieldCheck className="w-4 h-4" />
                     Secure Booking
                   </div>
@@ -140,7 +140,7 @@ export function BookingModal({ listing, children }: BookingModalProps) {
               <Button
                 disabled={loading || !date?.from || !date?.to}
                 onClick={handleBooking}
-                className="w-full bg-[#3B9ECC] text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
+                className="w-full accent-gradient text-[#262626] rounded-full py-8 text-[12px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-super mt-8"
               >
                 {loading ? 'Processing...' : (
                   <span className="flex items-center gap-2">
