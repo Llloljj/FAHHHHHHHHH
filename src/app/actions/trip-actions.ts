@@ -33,7 +33,7 @@ export async function createTrip(formData: FormData) {
   const tripId = uuidv4()
 
   // CREATE ADMIN CLIENT TO BYPASS RLS AUTHORIZATION
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://unlhbwrudnossaksrqsd.supabase.co'
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
   
   if (!supabaseServiceKey) {

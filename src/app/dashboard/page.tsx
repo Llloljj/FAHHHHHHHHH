@@ -19,16 +19,11 @@ export default async function DashboardPage() {
     auth: { autoRefreshToken: false, persistSession: false }
   })
 
-  // Fetch trips for this guest/user
-  const tripsQuery = user
-    ? adminClient
-      .from('trips')
-      .select(`id, title, destination, start_date, end_date, trip_members!inner(user_id)`)
-      .eq('trip_members.user_id', user.id)
-      .order('start_date', { ascending: true })
-    : { data: [], error: null }
-
-  const { data: trips, error } = await (user ? tripsQuery as any : Promise.resolve({ data: [], error: null }))
+  // Fetch ALL trips from the trips table (unfiltered for testing/display)
+  const { data: trips, error } = await adminClient
+    .from('trips')
+    .select(`id, title, destination, start_date, end_date, group_size, trip_members(id)`)
+    .order('created_at', { ascending: false })
 
   return (
     <div className="min-h-screen pt-[100px] px-8 md:px-16 bg-background pb-24">
@@ -85,7 +80,7 @@ export default async function DashboardPage() {
                       </div>
                       <div className="flex items-center">
                         <Users className="w-4 h-4 mr-3 text-[#3B9ECC]" />
-                        {trip.trip_members?.length ?? 1} Explorer(s)
+                        {trip.group_size || 1} Explorer(s)
                       </div>
                     </div>
                   </CardContent>

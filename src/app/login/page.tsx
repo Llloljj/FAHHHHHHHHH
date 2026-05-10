@@ -1,16 +1,28 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { Mail, Lock, Sparkles, ArrowRight } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 
 type Mode = 'signin' | 'signup' | 'magic'
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
+  )
+}
+
+function LoginContent() {
   const supabase = createClient()
+  const searchParams = useSearchParams()
+  const next = searchParams.get('next') || '/dashboard'
+  
   const [mode, setMode] = useState<Mode>('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -23,7 +35,7 @@ export default function LoginPage() {
     setLoading(true); setError(null)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError(error.message); setLoading(false) }
-    else window.location.href = '/dashboard'
+    else window.location.href = next
   }
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -51,7 +63,7 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${location.origin}/api/auth/callback?next=/trips/new` }
+      options: { redirectTo: `${location.origin}/api/auth/callback?next=${encodeURIComponent(next)}` }
     })
     if (error) setError(error.message)
   }
