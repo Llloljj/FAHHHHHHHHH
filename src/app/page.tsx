@@ -4,9 +4,9 @@ import { RevealUp } from '@/components/reveal-up'
 
 const DESTINATIONS = [
   { tag: "CULTURE", title: "Kolkata", img: "https://images.unsplash.com/photo-1603813507806-0d311a6eecd1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", offset: false, year: "2026" },
-  { tag: "ADVENTURE", title: "Rishikesh", img: "/alps.png", offset: true, year: "2026" },
-  { tag: "WELLNESS", title: "Kerala", img: "/bali.png", offset: false, year: "2026" },
-  { tag: "LEISURE", title: "Jaipur", img: "/amalfi.png", offset: true, year: "2026" },
+  { tag: "ADVENTURE", title: "Rishikesh", img: "https://images.unsplash.com/photo-1718383537744-13289af20e12?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", offset: true, year: "2026" },
+  { tag: "WELLNESS", title: "Kerela", img: "https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", offset: false, year: "2026" },
+  { tag: "LEISURE", title: "Jaipur", img: "https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?q=80&w=664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", offset: true, year: "2026" },
 ]
 
 const SERVICES = [
