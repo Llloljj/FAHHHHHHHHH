@@ -14,16 +14,19 @@ const SERVICES = [
     title: "AI ITINERARIES",
     desc: "Hyper-personalized day-by-day group plans, optimized for energy levels and shared budgets.",
     icon: "01",
+    bgImage: "https://imgs.search.brave.com/7IIuxNcgOAs-CabJaEmDsWuI8qNa_atpeYN-RtnkzDw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YWxpa2UuaW8vZGly/ZWN0dXMtaW1hZ2Vz/L2E4NjQyMDYyLWVh/ODItNDRiMy1hMjQ0/LTViMGM1NDc3OWJl/MC5wbmc_Zm9ybWF0/PXdlYnAmcXVhbGl0/eT04MA"
   },
   {
     title: "P2P MARKETPLACE",
     desc: "Verified luxury homes, premium vehicles, and expert local guides. Direct access, no middlemen.",
     icon: "02",
+    bgImage: "https://imgs.search.brave.com/Dvk36X9O-eHLeuuK5oG3r8j1v0Ol5Ifkj6i1uF2BiTs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXNjcmlwdHMuY29t/L2Jsb2cvd3AtY29u/dGVudC91cGxvYWRz/LzIwMjEvMDEvMjAy/MS1lY29tbWVyY2Ut/YnVzaW5lc3MuanBn"
   },
   {
     title: "SMART SPLITS",
     desc: "Real-time expense tracking and intelligent debt settling using minimum transaction algorithms.",
     icon: "03",
+    bgImage: "https://imgs.search.brave.com/AmpmWRi8dIMz5Jd2fTXlnKHFJGwjuhVp9gQiAtySa_g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQz/NTAxNDY0My9waG90/by9haS1tYWNoaW5l/LWxlYXJuaW5nLXJv/Ym90LWhhbmQtYWkt/YXJ0aWZpY2lhbC1p/bnRlbGxpZ2VuY2Ut/YXNzaXN0YW5jZS1o/dW1hbi10b3VjaGlu/Zy1vbi1iaWcuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPU1s/YkhkaGtmcWV0VDli/OWtxNThFUGIyeF90/d3VpNzVOUy1kQ1kw/MW5mNFE9"
   },
 ]
 
@@ -140,25 +143,36 @@ export default function Home() {
           </div>
         </RevealUp>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 border-y border-[#262626]/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {SERVICES.map((service, i) => (
             <RevealUp key={i}>
               <div
-                className={`p-10 md:p-12 border-[#262626]/10 group hover:accent-gradient transition-all duration-500 cursor-pointer ${i !== 2 ? 'md:border-r' : ''} border-b md:border-b-0`}
+                className="relative p-10 md:p-12 group hover:accent-gradient transition-all duration-500 cursor-pointer overflow-hidden rounded-[32px] border border-[#262626]/5 shadow-xl hover:shadow-2xl hover:-translate-y-2"
                 style={{ minHeight: '320px' }}
               >
-                <div className="text-4xl font-black italic accent-gradient-text group-hover:text-[#262626] transition-all duration-500 mb-10 leading-none">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter text-[#262626] mb-5">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[#262626]/60 group-hover:text-[#262626]/80 leading-relaxed font-medium">
-                  {service.desc}
-                </p>
-                <div className="mt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-colors">
-                  <span className="label-utility text-[#262626]/70">Explore</span>
-                  <span className="text-[#262626]">→</span>
+                {service.bgImage && (
+                  <>
+                    <div 
+                      className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${service.bgImage}')` }}
+                    />
+                    <div className="absolute inset-0 z-0 bg-[#262626]/40 group-hover:bg-[#262626]/10 transition-colors duration-500" />
+                  </>
+                )}
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className={`text-4xl font-black italic transition-all duration-500 mb-10 leading-none ${service.bgImage ? 'text-white group-hover:text-[#262626]' : 'accent-gradient-text group-hover:text-[#262626]'}`}>
+                    {service.icon}
+                  </div>
+                  <h3 className={`text-2xl font-black uppercase tracking-tighter mb-5 transition-colors duration-500 ${service.bgImage ? 'text-white group-hover:text-[#262626]' : 'text-[#262626]'}`}>
+                    {service.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed font-medium transition-colors duration-500 ${service.bgImage ? 'text-white/80 group-hover:text-[#262626]/80' : 'text-[#262626]/60 group-hover:text-[#262626]/80'}`}>
+                    {service.desc}
+                  </p>
+                  <div className="mt-auto pt-10 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    <span className={`label-utility ${service.bgImage ? 'text-white/70 group-hover:text-[#262626]/70' : 'text-[#262626]/70'}`}>Explore</span>
+                    <span className={service.bgImage ? 'text-white group-hover:text-[#262626]' : 'text-[#262626]'}>→</span>
+                  </div>
                 </div>
               </div>
             </RevealUp>
@@ -254,27 +268,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS BAR ──────────────────────────────── */}
-      <section className="py-20 px-8 md:px-16 bg-[#f5f0eb] border-y border-[#262626]/10">
-        <RevealUp>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "12K+", label: "Trips Planned" },
-              { value: "94%", label: "Satisfaction Rate" },
-              { value: "200+", label: "Destinations" },
-              { value: "40K+", label: "Travelers" },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <span className="font-black text-[#262626] tracking-tighter"
-                  style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1 }}>
-                  {stat.value}
-                </span>
-                <span className="label-utility text-[#262626]/40">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </RevealUp>
-      </section>
 
       {/* ── FOOTER ────────────────────────────────── */}
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">
