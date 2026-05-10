@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { RevealUp } from '@/components/reveal-up'
+import { JaipurChat } from '@/components/jaipur-chat'
 
 const DESTINATIONS = [
   { tag: "CULTURE", title: "Kyoto Heritage", img: "/kyoto.png", offset: false, year: "2026" },
@@ -240,6 +241,24 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ── JAIPUR CHAT ────────────────────────── */}
+      <section className="py-24 px-8 md:px-16 bg-[#fdf8f3]">
+        <RevealUp>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="label-utility text-[#3B9ECC] mb-4">Demo Feature</p>
+              <h2 className="text-4xl font-black uppercase tracking-tighter text-[#262626]">
+                Jaipur Travel Assistant
+              </h2>
+              <p className="text-[#262626]/60 mt-2 font-medium">
+                Ask about rentals, guides, and destinations in Jaipur based on the provided data.
+              </p>
+            </div>
+            <JaipurChat />
+          </div>
+        </RevealUp>
+      </section>
 
       {/* ── FOOTER ────────────────────────────────── */}
       <footer className="bg-[#f5f0eb] pt-24 pb-8 px-8 md:px-16">

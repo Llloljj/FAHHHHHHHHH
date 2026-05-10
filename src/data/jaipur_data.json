@@ -1,0 +1,127 @@
+{
+    "city": "Jaipur",
+    "city_description": "The Pink City, known for its stunning forts, royal palaces, and vibrant street markets.",
+    "rental_services": [
+        {
+            "name": "Royal Rides",
+            "type": "Scooters/Bikes",
+            "rating": "4.8",
+            "price": "₹300/day",
+            "contact": "9876543210",
+            "note": "Best for avoiding traffic in old city."
+        },
+        {
+            "name": "Pink City Cab Co.",
+            "type": "AC Sedan",
+            "rating": "4.5",
+            "price": "₹1200/day",
+            "contact": "9123456789",
+            "note": "Professional drivers who act as mini-guides."
+        },
+        {
+            "name": "Desert Wheelers",
+            "type": "Jeeps/4x4",
+            "rating": "4.7",
+            "price": "₹2500/day",
+            "contact": "9223344556",
+            "note": "Perfect for trips to Amer Fort and Nahargarh."
+        },
+        {
+            "name": "Eco-Cycle Jaipur",
+            "type": "Bicycles",
+            "rating": "4.2",
+            "price": "₹200/day",
+            "contact": "9334455667",
+            "note": "Great for the heritage walking tour."
+        },
+        {
+            "name": "Luxury Limo Rajasthan",
+            "type": "Luxury Van",
+            "rating": "4.9",
+            "price": "₹5000/day",
+            "contact": "9445566778",
+            "note": "Best for large families or corporate groups."
+        }
+    ],
+    "local_guides": [
+        {
+            "name": "Amit Sharma",
+            "specialty": "Forts & Royal History",
+            "rating": "5.0",
+            "experience": "10 years",
+            "language": "English, Hindi, French"
+        },
+        {
+            "name": "Priya Das",
+            "specialty": "Textiles & Local Markets",
+            "rating": "4.8",
+            "experience": "5 years",
+            "language": "English, Hindi"
+        },
+        {
+            "name": "Vikram Singh",
+            "specialty": "Photography & Hidden Gems",
+            "rating": "4.9",
+            "experience": "7 years",
+            "language": "English, Hindi, Spanish"
+        },
+        {
+            "name": "Suman Verma",
+            "specialty": "Food & Culinary Tours",
+            "rating": "4.7",
+            "experience": "4 years",
+            "language": "English, Hindi"
+        },
+        {
+            "name": "Rajesh Meena",
+            "specialty": "Nature & Bird Watching",
+            "rating": "4.6",
+            "experience": "12 years",
+            "language": "English, Hindi"
+        }
+    ],
+    "destinations": [
+        {
+            "name": "Amer Fort",
+            "category": "Historical",
+            "best_time": "Early Morning",
+            "highlight": "Mirror Palace (Sheesh Mahal)"
+        },
+        {
+            "name": "Hawa Mahal",
+            "category": "Architectural",
+            "best_time": "Sunrise",
+            "highlight": "The 953 small windows"
+        },
+        {
+            "name": "City Palace",
+            "category": "Museum",
+            "best_time": "Afternoon",
+            "highlight": "Royal costumes and weaponry"
+        },
+        {
+            "name": "Jantar Mantar",
+            "category": "Science",
+            "best_time": "10 AM",
+            "highlight": "The world's largest stone sundial"
+        },
+        {
+            "name": "Nahargarh Fort",
+            "category": "Viewpoint",
+            "best_time": "Sunset",
+            "highlight": "Panoramic view of the entire city"
+        }
+    ],
+    "street_info": {
+        "Johari Bazaar": "Specializes in jewelry and gemstones. Very crowded, walking is recommended.",
+        "Bapu Bazaar": "Famous for textiles, mojari (shoes), and handicrafts.",
+        "Tripolia Bazaar": "Best for sweets and lacquerware.",
+        "Street Safety": "High. However, be cautious of 'Touts' (unauthorized guides) near major monuments."
+    },
+    "safety_ratings": {
+        "General": "Safe for tourists",
+        "Nightlife": "Moderate (Stick to well-lit areas)",
+        "Public Transport": "Safe (Use Uber/Ola for verified rides)",
+        "Emergency": "Police helpline 100, Tourist helpline 1363"
+    }
+}
