@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useChat } from '@ai-sdk/react'
+import { TextStreamChatTransport } from 'ai'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,9 +10,13 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Bot, Send, Sparkles } from 'lucide-react'
 
 export function JaipurChat() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: '/api/chat/jaipur',
+  const [input, setInput] = useState('')
+  
+  const { messages, sendMessage, status } = useChat({
+    transport: new TextStreamChatTransport({ api: '/api/chat/jaipur' }),
   })
+
+  const isLoading = status === 'streaming' || status === 'submitted'
 
   return (
     <Card className="border-[#262626]/10 shadow-xl shadow-[#262626]/5 rounded-[24px] overflow-hidden flex flex-col h-[500px] border">
@@ -70,10 +75,15 @@ export function JaipurChat() {
         </ScrollArea>
 
         <div className="p-4 bg-white border-t border-[#262626]/5 shrink-0">
-          <form onSubmit={handleSubmit} className="relative">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (!input.trim() || isLoading) return;
+            sendMessage({ text: input });
+            setInput('');
+          }} className="relative">
             <Input
               value={input}
-              onChange={handleInputChange}
+              onChange={(e) => setInput(e.target.value)}
               placeholder={`Ask anything...`}
               className="w-full rounded-full bg-[#FAF7F2] border-0 px-6 py-6 pr-14 focus-visible:ring-[#e4a4bd] text-sm font-medium"
             />
