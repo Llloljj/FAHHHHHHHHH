@@ -192,3 +192,58 @@ DROP TRIGGER IF EXISTS trg_update_trips_updated_at ON trips;
 CREATE TRIGGER trg_update_trips_updated_at
 BEFORE UPDATE ON trips
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- ==========================================
+-- 8. TRIP REQUIREMENTS EXTENSION
+-- ==========================================
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='trips' AND column_name='group_size') THEN
+        ALTER TABLE trips ADD COLUMN group_size INTEGER DEFAULT 1;
+        ALTER TABLE trips ADD COLUMN spending_power TEXT CHECK (spending_power IN ('budget', 'standard', 'luxury')) DEFAULT 'standard';
+        ALTER TABLE trips ADD COLUMN vendor_requirements TEXT;
+    END IF;
+END
+$$;
+
+-- ==========================================
+-- 9. GOOGLE VERIFICATION PROFILES
+-- ==========================================
+CREATE TABLE IF NOT EXISTS public.profiles (
+  id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  full_name TEXT,
+  avatar_url TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+
+DO $$ 
+BEGIN
+  IF NOT EXISTS (
+    SELECT FROM pg_policies WHERE tablename = 'profiles' AND policyname = 'Users can view own profile'
+  ) THEN
+    CREATE POLICY "Users can view own profile" ON public.profiles FOR SELECT USING (auth.uid() = id);
+    CREATE POLICY "Users can update own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
+  END IF;
+END $$;
+
+CREATE OR REPLACE FUNCTION public.handle_new_user() 
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, email, full_name, avatar_url)
+  VALUES (
+    NEW.id,
+    NEW.email,
+    NEW.raw_user_meta_data->>'full_name',
+    NEW.raw_user_meta_data->>'avatar_url'
+  );
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();

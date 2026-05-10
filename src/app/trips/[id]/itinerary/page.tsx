@@ -32,7 +32,6 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
     .select('*')
     .eq('trip_id', id)
 
-
   // Fetch Marketplace Bookings
   const { data: bookings } = await supabase
     .from('bookings')
@@ -113,7 +112,6 @@ export default async function TripItineraryPage({ params }: { params: { id: stri
         <RevealUp delay={300}>
           {allItems.length === 0 ? (
             <EmptyState 
-              icon={Calendar}
               title="Empty Timeline"
               message="Start adding activities or book through the marketplace to populate your trip itinerary."
               actionLabel="Explore Marketplace"

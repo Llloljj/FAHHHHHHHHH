@@ -10,30 +10,14 @@ export async function createBookingOrder(listingId: string, amount: number) {
 
   if (!user) throw new Error('Not authenticated')
 
-  const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID || '',
-    key_secret: process.env.RAZORPAY_KEY_SECRET || '',
-  })
-
-  const amountInPaise = Math.round(amount * 100)
-
-  try {
-    const order = await razorpay.orders.create({
-      amount: amountInPaise,
-      currency: 'INR',
-      receipt: `receipt_${listingId}_${Date.now()}`
-    })
-
-    return {
-      orderId: order.id,
-      amount: order.amount,
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID
-    }
-  } catch (error) {
-    console.error("Razorpay order creation failed:", error)
-    throw new Error('Failed to create payment order')
+  // Mocking Razorpay Order for development
+  return {
+    orderId: `mock_order_${Math.random().toString(36).substring(7)}`,
+    amount: Math.round(amount * 100),
+    key: 'mock_key'
   }
 }
+
 export async function confirmBooking(data: {
   listingId: string,
   tripId?: string,

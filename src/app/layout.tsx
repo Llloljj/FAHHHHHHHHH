@@ -23,8 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-import Script from "next/script";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,7 +33,6 @@ export default function RootLayout({
       <body
         className={`${leagueSpartan.className} min-h-screen flex flex-col antialiased bg-[#fdf8f3] text-[#262626]`}
       >
-        <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
         <GuestSession />
         <Navbar />
         <main className="flex-1">{children}</main>
